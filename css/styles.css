@@ -219,3 +219,122 @@ a.custom-card:hover {
   padding: 20px;
   
 }
+.container{
+  display: flex;
+  width: 80%;
+  height: 80%;
+  max-width: 1200px;
+  max-height: 800px;
+  border: 1px solid rgb(254,153, 0);
+}
+
+.image-section {
+  flex: 1;
+  display: flex;
+  justify-content: left;
+align-items: left;
+}
+
+.image-section img {
+  max-width: 50%;
+  height: auto;
+  border-radius: 8px;
+}
+.login-section{
+  flex: 1;
+  display: flex;
+  justify-content: right;
+  align-items: right;
+}
+
+.login-container {
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  border: 2px solid rgb(254,153, 0);
+}
+
+.login-container h2 {
+  margin: 0 0 20px;
+  font-size: 24px;
+  text-align: center;
+  color: #202020;
+}
+
+.input-group {
+  margin-bottom: 15px;
+}
+
+.input-group input{
+  width: 100%;
+  padding: 10px;
+  border: 2px solid rgb(254,153, 0);
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-size: 16px;
+  color: #202020;
+}
+
+input::placeholder {
+  color: #999;
+  font-size: 16px;
+}
+.checkbox-group {
+display: flex;
+align-items: left;
+}
+
+.checkbox-group input[type="checkbox"]{
+margin-right: 2px;
+}
+
+.checkbox-group a{
+  color: rgb(254,153, 0);
+  text-decoration: none;
+}
+
+.checkbox-group a:hover {
+text-decoration: underline;
+background-color: rgb(254,153, 0);
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  background-color: rgb(254,153, 0);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #ff8c00;
+}
+
+.espacio {
+  margin: 20px 0;
+  font-size: 14px;
+  color: #202020;
+  text-align: center;
+}
+
+.logotipos {
+  margin-top: 20px;
+  display: flex;
+  gap: 20px;
+  padding: 25px;
+}
+
+.logotipos .logo1 {
+  width: 80px;
+  height: auto;
+}
+
+.logotipos .logo2 {
+  width: 110px;
+  height: auto;
+}

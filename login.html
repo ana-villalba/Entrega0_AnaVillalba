@@ -17,50 +17,43 @@
 </head>
 
 
+
 <body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
-    <div class="container">
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav w-100 justify-content-between">
-          <li class="nav-item">
-            <a class="nav-link" href="index.html">Inicio</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="categories.html">Categorías</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="sell.html">Vender</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="products.html">Productos</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" href="login.html">Ingresar</a>
-          </li>
-        </ul>
-      </div>
+  <div class="cointainer">
+    <div class="image-section">
+      <img src="img/login.png" alt="imagen"/>
     </div>
-  </nav>
-  <main>
-  <main class="mt-5">
-    <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
-      </div>
+  </div>
+  <div class="login-section">
+    <div class="login-container">
+   <h2> Iniciar sesión</h2>
+   <form action="#" method="post">
+    <div class="input-group">
+      <input type="text" id="username" name="username" placeholder="Ingresar nombre de usuario" required>
     </div>
-  </main>
-  <footer class="text-muted">
-    <div class="container">
-      <p class="float-end">
-        <a href="#">Volver arriba</a>
-      </p>
-      <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a></p>
+    <div class="input-group">
+      <input type="password" id="password" name="password" placeholder="Ingresar contraseña" required> 
     </div>
-  </footer>
+    <div class="input-group checkbok-group">
+      <input type="checkbox" id="remember" name="remember" checked>
+      <label for="remember">Recordar usuario</label>
+    </div>
+    <button type="submit">Ingesar</button>
+   </form>
+   <h5 class="espacio">¿Olvidaste tu contraseña?</h5>
+    <hr> 
+    <div class="logotipos">
+      <img src="img/Google.JPG" alt="logo1" class="logo1"/>
+      <img src="img/Ceibal.JPG" alt="logo2" class="logo2"/>
+    </div>
+
+
+  </div>
+</div>
+  </div>
+  
+  
+      
   <script src="js/login.js"></script>
 </body>
 
