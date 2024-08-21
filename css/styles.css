@@ -188,3 +188,34 @@ a.custom-card:hover {
 .checked {
   color: orange;
 }
+
+.product-item {
+  color: black;
+  display: flex;
+  border: 2px solid lightgray; 
+  padding: 10px;          
+  margin: 20px;           
+  max-width: 100%; 
+  border-width: thin;   
+  box-sizing: border-box;     
+}
+  
+
+.product-image{
+  width: 300px;
+  float: left;
+  padding: 20px;
+}
+
+.product-name{
+  font-weight: bolder;
+  color: black;
+}
+.product-details{
+  padding: 20px;
+}
+
+#listcars{
+  padding: 20px;
+  
+}
