@@ -246,6 +246,7 @@ padding-top: 70px;
   height: auto;
   border-radius: 8px;
 }
+
 .login-section{
   flex: 1;
   display: flex;
@@ -253,6 +254,7 @@ padding-top: 70px;
   align-items: right;
   padding-right: 50px;
   padding-top: 70px;
+}
 
 .login-container {
   padding: 20px;
