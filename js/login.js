@@ -1,16 +1,16 @@
-function login() {
-    // Suponiendo que la autenticación es exitosa
-    localStorage.setItem('isLoggedIn', 'true');
-    window.location.href = 'idex.html';  // Redirige a la portada
-}
-
-window.onload = function() {
-    if (localStorage.getItem('isLoggedIn') !== 'true') {
-        window.location.href = 'login.html';  // Redirige al login
+//desafiate
+function login(){
+    //Desarrolla aquí la función del botón para la validación de datos y redirección a index.html
+    // 1. Obtén los valores de los campos de entrada "username" y "password" por su ID.
+    let username= document.getElementById("username");
+    let password= document.getElementById("password");
+    // 2. Verifica si ambos campos tienen valores. Puedes usar una condición if.
+        if (username === ''|| password === '') {
+            alert ('Completar todos los campos');
+        } else {
+            sessionStorage.setItem("session", "loggedin");
+            localStorage.setItem("userlogger", username);
+            localStorage.setItem("userlogger", password);
+            window.location.href = "index.html";
+        }
     }
-}
-
-function logout() {
-    localStorage.removeItem('isLoggedIn');
-    window.location.href = 'login.html';  // Redirige al login después de cerrar sesión
-}
