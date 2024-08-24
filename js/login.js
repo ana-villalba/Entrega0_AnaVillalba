@@ -11,7 +11,6 @@ function login(){
             sessionStorage.setItem("session", "loggedin");
             localStorage.setItem("userlogger", username);
             localStorage.setItem("userpassword", password);
+            window.location.href = "index.html";
         }
     }
-
-    window.location.href = "index.html";
