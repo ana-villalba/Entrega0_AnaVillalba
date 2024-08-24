@@ -202,12 +202,11 @@ a.custom-card:hover {
 }
   
 
-.product-image{
+#product-image {
   width: 300px;
   float: left;
   padding: 20px;
-  border-top: 10px solid lightgrey;
-  border-bottom: 10px solid lightgrey;
+ 
 }
 
 .product-name{
