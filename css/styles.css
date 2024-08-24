@@ -307,7 +307,6 @@ input::placeholder {
 }
 .checkbox-group {
 display: flex;
-align-items: left;
 }
 
 .checkbox-group input[type="checkbox"]{
@@ -316,7 +315,6 @@ margin-right: 2px;
 
 .checkbox-group a{
   color: rgb(254,153, 0);
-  text-decoration: none;
 }
 
 .checkbox-group a:hover {
