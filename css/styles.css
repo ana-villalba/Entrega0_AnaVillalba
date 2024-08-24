@@ -197,7 +197,8 @@ a.custom-card:hover {
   margin: 20px;           
   max-width: 100%; 
   border-width: thin;   
-  box-sizing: border-box;     
+  box-sizing: border-box;
+  border-radius: 10px;     
 }
   
 
@@ -212,9 +213,23 @@ a.custom-card:hover {
   color: black;
 }
 .product-details{
-  padding: 20px;
+  padding:10px;
+  color: grey;
+  margin-left: 15px;
 }
 
+
+.listcars{
+padding: 35px; 
+text-shadow: 2px 2px 2px lightgray; 
+margin-left: 15px;
+}
+.carscat{ 
+  color: grey; 
+  text-shadow: 2px 2px 2px lightgray;
+  margin-left: 70px;
+  }
+=======
 #listcars{
   padding: 20px;
   
@@ -340,3 +355,4 @@ button-login:hover {
   width: 110px;
   height: auto;
 }
+

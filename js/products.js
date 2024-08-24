@@ -1,4 +1,5 @@
-let autos= `https://japceibal.github.io/emercado-api/cats_products/101.json`
+let categoria = '101'
+
 function showProductsList(array) {
     let htmlContentToAppend = "";
 
@@ -11,9 +12,9 @@ function showProductsList(array) {
             </div>
             <div class="product-details">
                 <p class="product-name">`+ product.name + `<p>
-                <p>` + product.description + `</p>
-                <p> $` + product.cost + `</p>
-                <p>` + product.soldCount + `</p>
+                <p> ` + product.description + `</p>
+                <p> Precio $: ` + product.cost + `</p>
+                <p> Cantidad vendida: `+ product.soldCount + `</p>
             </div>
         </div>
         `;
@@ -24,7 +25,7 @@ function showProductsList(array) {
 
 // Cargar los datos cuando el DOM esté listo
 document.addEventListener("DOMContentLoaded", function(e){
-    getJSONData(autos).then(function(resultObj){
+    getJSONData(PRODUCTS_URL + '/' + categoria + '.json').then(function(resultObj){
         if (resultObj.status === "ok")
         {
             productsArray = resultObj.data.products;
@@ -34,13 +35,4 @@ document.addEventListener("DOMContentLoaded", function(e){
 });
 
 
-function fetchProducts() {fetch(PRODUCTS_URL)
-.then(data => data.json()
-).then (data => {
-    productsArray = data;
-    showProductsList(productsArray);
 
-  } );} 
-  document.addEventListener("DOMContentLoaded", function() {
-    fetchProducts();
-});
