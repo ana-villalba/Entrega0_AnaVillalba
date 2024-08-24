@@ -229,7 +229,7 @@ margin-left: 15px;
   text-shadow: 2px 2px 2px lightgray;
   margin-left: 70px;
   }
-=======
+
 #listcars{
   padding: 20px;
   
@@ -349,6 +349,7 @@ button-login:hover {
   display: flex;
   gap: 20px;
   padding: 25px;
+  justify-content: center;
 }
 
 .logotipos .logo2 {
