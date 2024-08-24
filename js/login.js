@@ -4,7 +4,7 @@ function login() {
     let password = document.getElementById("password").value;
 
     // 2. Verifica si ambos campos tienen valores.
-    if (username === '' || password === '') {
+    if (username.trim() === '' || password.trim() === '') {
         alert('Completar todos los campos');
     } else {
         // 3. Guarda los datos en sessionStorage y localStorage.
