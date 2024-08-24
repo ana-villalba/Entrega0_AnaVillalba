@@ -194,7 +194,7 @@ a.custom-card:hover {
   display: flex;
   border: 2px solid lightgray; 
   padding: 10px;          
-  margin: 40px;           
+  margin: 20px;           
   max-width: 100%; 
   border-width: thin;   
   box-sizing: border-box;
@@ -202,11 +202,10 @@ a.custom-card:hover {
 }
   
 
-#product-image {
+.product-image{
   width: 300px;
   float: left;
   padding: 20px;
- 
 }
 
 .product-name{
