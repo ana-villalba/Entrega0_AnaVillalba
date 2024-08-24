@@ -12,9 +12,9 @@ function showProductsList(array) {
             </div>
             <div class="product-details">
                 <p class="product-name">`+ product.name + `<p>
-                <p>` + product.description + `</p>
-                <p> $` + product.cost + `</p>
-                <p>` + product.soldCount + `</p>
+                <p> ` + product.description + `</p>
+                <p> Precio $: ` + product.cost + `</p>
+                <p> Cantidad vendida: `+ product.soldCount + `</p>
             </div>
         </div>
         `;
@@ -35,16 +35,4 @@ document.addEventListener("DOMContentLoaded", function(e){
 });
 
 
-// function fetchProducts() {
-//     fetch(PRODUCTS_URL + '/' + categoria + '.json')
-//         .then(data => data.json())
-//         .then(data => {
-//             console.log(data)
-//             productsArray = data.products
-//             showProductsList(productsArray);
-//         })
-// } 
 
-// document.addEventListener("DOMContentLoaded", function() {
-//     fetchProducts();
-// });
