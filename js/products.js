@@ -6,11 +6,11 @@ function showProductsList(array) {
     for (let i = 0; i < array.length; i++) {
         let product = array[i];
         htmlContentToAppend += `
-        <div class="product-item" >
-            <div class="product-image">
+        <div class="product-item container-fluid" >
+            <div class="product-image col-lg-4">
                 <img src=" `+ product.image +` " alt="product image" class="img-thumbnail">
             </div>
-            <div class="product-details">
+            <div class="product-details col-lg-7">
                 <p class="product-name">`+ product.name + `<p>
                 <p> ` + product.description + `</p>
                 <p> Precio $: ` + product.cost + `</p>
