@@ -191,20 +191,20 @@ a.custom-card:hover {
 
 .product-item {
   color: black;
-  display: flex;
   border: 2px solid lightgray; 
   padding: 10px;          
-  margin: 20px;           
+  margin-top: 20px;
+  margin-bottom: 20px;           
   max-width: 100%; 
   border-width: thin;   
   box-sizing: border-box;
-  border-radius: 10px;     
+  border-radius: 10px;
+  display: flex;     
+  flex-wrap: wrap;
 }
   
 
 .product-image{
-  width: 300px;
-  float: left;
   padding: 20px;
 }
 
@@ -230,10 +230,12 @@ margin-left: 15px;
   margin-left: 70px;
   }
 
+
 #listcars{
   padding: 20px;
   
 }
+
 .image-section img {
   max-width: 100%;
   height: auto;
