@@ -194,7 +194,7 @@ a.custom-card:hover {
   display: flex;
   border: 2px solid lightgray; 
   padding: 10px;          
-  margin: 40px;           
+  margin: 20px;           
   max-width: 100%; 
   border-width: thin;   
   box-sizing: border-box;
@@ -202,11 +202,10 @@ a.custom-card:hover {
 }
   
 
-#product-image {
+.product-image{
   width: 300px;
   float: left;
   padding: 20px;
- 
 }
 
 .product-name{
@@ -230,7 +229,7 @@ margin-left: 15px;
   text-shadow: 2px 2px 2px lightgray;
   margin-left: 70px;
   }
-=======
+
 #listcars{
   padding: 20px;
   
@@ -263,6 +262,30 @@ margin-left: 15px;
   font-size: 16px;
   color: #202020;
 }
+
+input::placeholder {
+  color: #999;
+  font-size: 16px;
+}
+.checkbox-group {
+display: flex;
+align-items: left;
+}
+
+.checkbox-group input[type="checkbox"]{
+margin-right: 2px;
+}
+
+.checkbox-group a{
+  color: rgb(254,153, 0);
+  text-decoration: none;
+}
+
+.checkbox-group a:hover {
+text-decoration: underline;
+background-color: rgb(254,153, 0);
+}
+
 .button-login {
   width: 100%;
   padding: 12px;
