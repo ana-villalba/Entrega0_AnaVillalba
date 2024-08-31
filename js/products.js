@@ -7,10 +7,10 @@ function showProductsList(array) {
         let product = array[i];
         htmlContentToAppend += `
         <div class="product-item container-fluid" >
-            <div class="product-image col-lg-4">
+            <div class="product-image col-lg-4 col-md-5">
                 <img src=" `+ product.image +` " alt="product image" class="img-thumbnail">
             </div>
-            <div class="product-details col-lg-7">
+            <div class="product-details col-lg-7 col-md-6">
                 <p class="product-name">`+ product.name + `<p>
                 <p> ` + product.description + `</p>
                 <p> Precio $: ` + product.cost + `</p>
