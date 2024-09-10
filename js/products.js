@@ -1,4 +1,4 @@
-let categoria = '101'
+
 
 function showProductsList(array) {
     let htmlContentToAppend = "";
@@ -23,16 +23,28 @@ function showProductsList(array) {
     document.getElementById("products-container").innerHTML = htmlContentToAppend;
 }
 
+function showCategory(name) {
+    
+    document.getElementById("namecategories").innerText = name;
+}
+
 // Cargar los datos cuando el DOM esté listo
 document.addEventListener("DOMContentLoaded", function(e){
+    let categoria = localStorage.getItem("catID")
     getJSONData(PRODUCTS_URL + '/' + categoria + '.json').then(function(resultObj){
         if (resultObj.status === "ok")
         {
             productsArray = resultObj.data.products;
             showProductsList(productsArray);
+            productsName = resultObj.data.catName;
+            showCategory(productsName)
         }
     });
 });
+
+
+
+
 
 
 
