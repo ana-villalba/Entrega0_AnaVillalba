@@ -1,4 +1,6 @@
 
+let productsArray = [];
+
 
 function showProductsList(array) {
     let htmlContentToAppend = "";
@@ -63,9 +65,27 @@ document.addEventListener("DOMContentLoaded", function(e){
     });
 });
 
+document.getElementById("filter-form").addEventListener("submit", function(event) {
+    event.preventDefault();
 
+    let minPrice = parseFloat(document.getElementById("min-price").value) || 0;
+    let maxPrice = parseFloat(document.getElementById("max-price").value) || Infinity;
+    let filteredProducts = filterProducts(minPrice, maxPrice);
+    let sortBy = document.getElementById("sort-select").value;
+    let sortedProducts = sortProducts(filteredProducts, sortBy);
+    
+    showProductsList(sortedProducts);
+});
 
+document.getElementById("sort-select").addEventListener("change", function() {
+    let minPrice = parseFloat(document.getElementById("min-price").value) || 0;
+    let maxPrice = parseFloat(document.getElementById("max-price").value) || Infinity;
+    let filteredProducts = filterProducts(minPrice, maxPrice);
+    let sortBy = this.value;
+    let sortedProducts = sortProducts(filteredProducts, sortBy);
 
+    showProductsList(sortedProducts);
+});
 
 
 
