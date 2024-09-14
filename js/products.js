@@ -23,10 +23,31 @@ function showProductsList(array) {
     document.getElementById("products-container").innerHTML = htmlContentToAppend;
 }
 
+
+function filterProducts(minPrice, maxPrice) {
+    return productsArray.filter(product =>
+        product.cost >= minPrice && product.cost <= maxPrice
+    );
+}
+
+function sortProducts(array, sortBy) {
+    return array.slice().sort((a, b) => {
+        if (sortBy === 'price-asc') {
+            return a.cost - b.cost;
+        } else if (sortBy === 'price-desc') {
+            return b.cost - a.cost;
+        } else if (sortBy === 'relevance') {
+            return b.soldCount - a.soldCount;
+        }
+        return 0;
+    });
+}
+
 function showCategory(name) {
     
     document.getElementById("namecategories").innerText = name;
 }
+
 
 // Cargar los datos cuando el DOM esté listo
 document.addEventListener("DOMContentLoaded", function(e){

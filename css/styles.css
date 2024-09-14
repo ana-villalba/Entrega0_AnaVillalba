@@ -230,43 +230,17 @@ margin-left: 15px;
   margin-left: 70px;
   }
 
-.container-login{
-  flex: 1;
-  width: 100%;
-  height: 80%;
-  max-width: 250px;
-  max-height: 800px;
-  border: 1px solid rgb(254,153, 0);
-  border-radius: 15px;
-  padding: 30px;
-}
 
-.image-section {
-  flex: 1;
-  display: flex;
-  float: left;
-  justify-content: left;
-align-items: left;
-padding-left: 70px;
-padding-top: 70px;
+#listcars{
+  padding: 20px;
+  
 }
 
 .image-section img {
-  float: left;
   max-width: 100%;
   height: auto;
   border-radius: 8px;
 }
-
-.login-section{
-  flex: 1;
-  display: flex;
-  justify-content: right;
-  align-items: right;
-  padding-right: 50px;
-  padding-top: 70px;
-}
-
 .login-container {
   padding: 20px;
   border-radius: 8px;
@@ -275,19 +249,13 @@ padding-top: 70px;
   max-width: 400px;
   border: 2px solid rgb(254,153, 0);
 }
-
 .login-container h2 {
   margin: 0 0 20px;
   font-size: 24px;
   text-align: center;
   color: #202020;
 }
-
-.input-group {
-  margin-bottom: 15px;
-}
-
-.input-group input{
+.input-group input {
   width: 100%;
   padding: 10px;
   border: 2px solid rgb(254,153, 0);
@@ -303,6 +271,7 @@ input::placeholder {
 }
 .checkbox-group {
 display: flex;
+align-items: left;
 }
 
 .checkbox-group input[type="checkbox"]{
@@ -311,6 +280,7 @@ margin-right: 2px;
 
 .checkbox-group a{
   color: rgb(254,153, 0);
+  text-decoration: none;
 }
 
 .checkbox-group a:hover {
@@ -321,25 +291,22 @@ background-color: rgb(254,153, 0);
 .button-login {
   width: 100%;
   padding: 12px;
-  background: linear-gradient(to right, #f2994a,#e3b34d);
+  background: linear-gradient(to right, #f2994a, #e3b34d);
   color: white;
   border: none;
   border-radius: 8px;
   font-size: 18px;
   cursor: pointer;
 }
-
-button-login:hover {
+.button-login:hover {
   background: linear-gradient(to right, #e3b34d, #f2994a);
 }
-
 .espacio {
   margin: 20px 0;
   font-size: 14px;
   color: #202020;
   text-align: center;
 }
-
 .logotipos {
   margin-top: 20px;
   display: flex;
@@ -347,9 +314,7 @@ button-login:hover {
   padding: 25px;
   justify-content: center;
 }
-
 .logotipos .logo2 {
   width: 110px;
   height: auto;
 }
-

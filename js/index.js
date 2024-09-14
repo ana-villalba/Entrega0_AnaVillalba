@@ -18,3 +18,19 @@ document.addEventListener("DOMContentLoaded", function () {
             window.location.href = "login.html";
         } 
     });
+    document.addEventListener("DOMContentLoaded", function() {
+    var username= localStorage.getItem("username");
+    if (username) {
+        document.getElementById("username-display").textContent = `Hola, ${username}`;
+        var loginLink = document.getElementById('login-link');
+        if (loginLink) {
+            loginLink.textContent = 'Cerrar sesión';
+            loginLink.href = "login.html";
+        }
+    }    else {
+        document.getElementById("username-display").textContent = 'Invitado';
+    }
+    if (!sessionStorage.getItem('sesion')){
+        window.location.href = "login.html";
+    }
+    });
