@@ -88,10 +88,12 @@
 
   <footer class="text-muted">
     <div class="container">
+      <div class="productId">
       <p class="float-end">
         <a href="#">Volver arriba</a>
       </p>
       <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a></p>
+    </div>
     </div>
   </footer>
     <div class="lds-ring">
@@ -105,24 +107,6 @@
   <script src="js/init.js"></script>
   <script src="js/products.js"></script>
   
-  
-  <script>
-// Selecciona todos los productos
-const productos = document.querySelectorAll(".product");
-
-// Agrega un evento 'click' a cada producto
-productos.forEach(producto => {
-    producto.addEventListener("click", () => {
-        const productId = producto.getAttribute("data-productId");
-        
-        // Guarda el ID del producto en el localStorage
-        localStorage.setItem("seleccionaproductoID",productId);
-        
-        // Redirige a la página de información del producto
-        window.location.href = "product-info.html";
-    });
-});
-</script>
 </body>
 
 </html>

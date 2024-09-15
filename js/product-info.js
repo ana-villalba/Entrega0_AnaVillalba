@@ -25,7 +25,7 @@ function getProductData(url) {
 // Ejecutar cuando la página esté cargada
 document.addEventListener("DOMContentLoaded", function() {
   // Recuperar el identificador del producto desde localStorage
-  let productId = localStorage.getItem("productId");
+  let productId = localStorage.getItem("selectedProductId");
 
   if (productId) {
     // Construir la URL con el ID del producto
