@@ -1,46 +1,64 @@
-document.addEventListener('DOMContentLoaded', function () {
-    const searchInput = document.getElementById('search-input');
-    searchInput.addEventListener('input', function () {
-        const searchText = searchInput.value.toLowerCase();
+document.addEventListener("DOMContentLoaded", function() {
+    // Obtener los productos desde el localStorage
+    const catID = localStorage.getItem("catID");
+    const productsContainer = document.getElementById("products-container");
 
-        // (Código index)
-        const cards = document.querySelectorAll('.card');
-        cards.forEach(card => {
-            const title = card.querySelector('h3').textContent.toLowerCase();
-            const description = card.querySelector('.card-text').textContent.toLowerCase();
-
-            if (title.includes(searchText) || description.includes(searchText)) {
-                card.style.display = 'block'; // mostrar si coincide con la búsqueda
-            } else {
-                card.style.display = 'none'; // ocultar si no coincide
-            }
+    // Función para mostrar los productos en la página
+    function displayProducts(products) {
+        productsContainer.innerHTML = ""; // Limpiar el contenedor
+        products.forEach(product => {
+            const productItem = `
+                <div class="card mb-3">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <img src="${product.image}" class="img-fluid rounded-start" alt="${product.name}">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">${product.name}</h5>
+                                <p class="card-text">${product.description}</p>
+                                <p class="card-text"><strong>Precio:</strong> $${product.price}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>`;
+            productsContainer.innerHTML += productItem;
         });
+    }
 
-        // (Código products)
-        const productItems = document.querySelectorAll('#products-container .row .col-md-4');
-        productItems.forEach(product => {
-            const title = product.querySelector('p .mb-1').textContent.toLowerCase(); // título 
-            const description = product.querySelector('p').textContent.toLowerCase(); // descripción
+    // Obtener productos de la API
+    fetch(`https://japceibal.github.io/emercado-api/cats_products/${catID}.json`)
+        .then(response => response.json())
+        .then(data => {
+            let products = data.products;
 
-            if (title.includes(searchText) || description.includes(searchText)) {
-                product.style.display = 'block'; // mostrar si coincide con la búsqueda
-            } else {
-                product.style.display = 'none'; // ocultar si no coincide
+            // Mostrar todos los productos inicialmente
+            displayProducts(products);
+
+            // Función para aplicar los filtros
+            function applyFilters() {
+                const searchText = document.getElementById("searchInput").value.toLowerCase();
+
+                // Filtrar por texto de búsqueda (en nombre o descripción)
+                let filteredProducts = products.filter(product =>
+                    product.name.toLowerCase().includes(searchText) || 
+                    product.description.toLowerCase().includes(searchText)
+                );
+
+                // Mostrar los productos filtrados
+                displayProducts(filteredProducts);
             }
+
+            // Agregar eventos para filtrar en tiempo real 
+            document.getElementById("searchInput").addEventListener("input", applyFilters);
+        })
+        .catch(error => {
+            console.error("Error al cargar los productos:", error);
         });
-
-
-        // (Código categories)
-        const categories = document.querySelectorAll('#cat-list-container .list-group');
-        categories.forEach(category => {
-            const title = category.querySelector('h4').textContent.toLowerCase(); // título 
-            const description = category.querySelector('p').textContent.toLowerCase(); // descripción 
-
-            if (title.includes(searchText) || description.includes(searchText)) {
-                category.style.display = 'block'; // mostrar si coincide con la búsqueda
-            } else {
-                category.style.display = 'none'; // ocultar si no coincide
-            }
-        });
-    });
 });
+
+
+
+
+  
+     
