@@ -39,9 +39,9 @@
       </div>
     </div>
   </nav>
-  <main class="pb-5 container">
 
-    <div class="container col-md-8">
+<main class="pb-5 container">
+   <div class="container col-md-8">
         <h2 class="listcars">Listado de productos</h2>
         <p class="carscat">AUTOS</p>
 
@@ -104,6 +104,25 @@
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/init.js"></script>
   <script src="js/products.js"></script>
+  
+  
+  <script>
+// Selecciona todos los productos
+const productos = document.querySelectorAll(".product");
+
+// Agrega un evento 'click' a cada producto
+productos.forEach(producto => {
+    producto.addEventListener("click", () => {
+        const productId = producto.getAttribute("data-productId");
+        
+        // Guarda el ID del producto en el localStorage
+        localStorage.setItem("seleccionaproductoID",productId);
+        
+        // Redirige a la página de información del producto
+        window.location.href = "product-info.html";
+    });
+});
+</script>
 </body>
 
 </html>

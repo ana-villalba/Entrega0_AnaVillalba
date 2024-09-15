@@ -1,5 +1,3 @@
-
-
 function showProductsList(array) {
     let htmlContentToAppend = "";
 
@@ -61,11 +59,3 @@ document.addEventListener("DOMContentLoaded", function(e){
             showCategory(productsName)
         }
     });
-});
-
-
-
-
-
-
-
