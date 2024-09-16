@@ -10,8 +10,8 @@ document.addEventListener("DOMContentLoaded", function() {
             const productItem = `
                 <div class="product-item card mb-3" data-productId=${product.id}>
                     <div class="row g-0">
-                        <div class="col-md-4">
-                            <img src="${product.image}" class="img-fluid rounded-start" alt="${product.name}">
+                        <div class="product-image col-lg-4 col-md-5">
+                            <img src="${product.image}" class="img-thumbnail" alt="${product.name}">
                         </div>
                         <div class="col-md-8">
                             <div class="card-body">
