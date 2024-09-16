@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function() {
         productsContainer.innerHTML = ""; // Limpiar el contenedor
         products.forEach(product => {
             const productItem = `
-                <div class="card mb-3">
+                <div class="product-item card mb-3" data-productId=${product.id}>
                     <div class="row g-0">
                         <div class="col-md-4">
                             <img src="${product.image}" class="img-fluid rounded-start" alt="${product.name}">
@@ -52,14 +52,25 @@ document.addEventListener("DOMContentLoaded", function() {
 
             // Agregar eventos para filtrar en tiempo real 
             document.getElementById("searchInput").addEventListener("input", applyFilters);
+
+             // Selecciona todos los productos
+               const productos = document.querySelectorAll(".product-item");
+        
+                // let categoria = localStorage.getItem("productId")
+                // Agrega un evento 'click' a cada producto
+                productos.forEach(producto => {
+                    producto.addEventListener("click", () => {
+                        const productId = producto.getAttribute("data-productId");
+                        
+                        // Guarda el ID del producto en el localStorage
+                        localStorage.setItem("selectedProductId", productId);
+                        
+                        // Redirige a la página de información del producto
+                        window.location.href = "product-info.html";
+                    });
+                });
         })
         .catch(error => {
             console.error("Error al cargar los productos:", error);
         });
 });
-
-
-
-
-  
-     
