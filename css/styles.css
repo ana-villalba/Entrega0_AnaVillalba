@@ -370,4 +370,31 @@ background-color: rgb(254,153, 0);
   color: #333;
 }
 
+#Experience {
+width: 300px; 
+height: 150px; 
+justify-content: center;
+align-items: center; 
+border-radius: 2px grey;
+font-size: 20px; 
+text-align: center; 
+box-shadow: 0 4px 10px rgba(196, 193, 193, 0.5); 
+
+}
+
+#EstrellasInput {
+  width: 300px; 
+  height: 150px; 
+  justify-content: center;
+  align-items: center; 
+  border-radius: 2px grey;
+  font-size: 20px; 
+  text-align: center; 
+  box-shadow: 0 4px 10px rgba(196, 193, 193, 0.5); 
+  margin-bottom: 40px;
+  }
+  .Calification{
+    font-size: 10px;
+    }
+
 
