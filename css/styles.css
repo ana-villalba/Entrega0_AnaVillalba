@@ -319,6 +319,7 @@ background-color: rgb(254,153, 0);
   height: auto;
 }
 
+
 .product-info-container {
   display: flex;
   flex-direction: column;
@@ -391,8 +392,7 @@ box-shadow: 0 4px 10px rgba(196, 193, 193, 0.5);
   font-size: 20px; 
   text-align: center; 
   box-shadow: 0 4px 10px rgba(196, 193, 193, 0.5); 
-  margin-bottom: 40px;
-  }
+
   .Calification{
     font-size: 10px;
     }
