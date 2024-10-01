@@ -38,8 +38,16 @@
         </ul>
       </div>
     </div>
+    <div class="navbar navbar-light bg-light"></div>
+    <form class="form-inline d-flex">
+      <input class="form-control mr-sm-2" id="search-input" type="search" placeholder="Buscar ..." aria-label="Search">
+      <button class="btn btn-outline-light my-2 my-sm-0 m-1" type="submit" id="btn">Buscar</button>
+    </form>
   </nav>
+  
   <main class="pb-5 container">
+    
+
 <br>
         <div class="mb-3">
           <form id="filter-form">
@@ -57,7 +65,11 @@
               </div>
             </div>
           </form>
-  
+  <br>
+        <div class="col-md-6">
+          <input type="search" id="searchInput" class="form-control" placeholder="Buscar productos...">
+        </form>
+        </div>
           <div class="mt-4">
             <label for="sort-select" class="form-label">Ordenar por</label>
             <select id="sort-select" class="form-select">
@@ -65,40 +77,44 @@
               <option value="price-desc">Precio Descendente</option>
               <option value="relevance">Más relevante</option>
             </select>
-          </div>
-        </div>
 
-        
-        <div class="container col-md-8">
-        <h2 class="listproducts">Listado de productos</h2>
-        <p id="namecategories" class="carscat"><p>
-        <div id="spinner-wrapper">
-          <div id="spinner"></div>
+
+    <div class="container col-md-8">
+      <h2 class="listproducts">Listado de productos</h2>
+      <p id="namecategories" class="carscat">
+      <p>
+      <div id="spinner-wrapper">
+        <div id="spinner"></div>
       </div>
       <div id="products-container" class="container">
       </div>
-      </div>
+    </div>
     </div>
   </main>
 
   <footer class="text-muted">
     <div class="container">
+      <div class="productId">
       <p class="float-end">
         <a href="#">Volver arriba</a>
       </p>
-      <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a></p>
+      <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a>
+      </p>
+    </div>
     </div>
   </footer>
-    <div class="lds-ring">
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-    </div>
+  <div class="lds-ring">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
   </div>
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/init.js"></script>
   <script src="js/products.js"></script>
+  <script src="js/search.js"></script>
+
 </body>
 
 </html>

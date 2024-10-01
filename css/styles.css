@@ -258,7 +258,7 @@ margin-left: 15px;
 .input-group input {
   width: 100%;
   padding: 10px;
-  border: 2px solid rgb(254,153, 0);
+  border: 2px solid rgb(254, 153,0);
   border-radius: 4px;
   box-sizing: border-box;
   font-size: 16px;
@@ -319,7 +319,71 @@ background-color: rgb(254,153, 0);
   height: auto;
 }
 
+
+.product-info-container {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #ddd;
+  padding: 20px;
+  max-width: 800px;
+  margin: auto;
+  background-color: white;
+}
+
+.product-info-image {
+  width: 100%;
+  max-height: 400px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.product-info-details {
+  padding: 20px 0;
+}
+
+.cantidades-info-vendidas {
+  font-size: 14px;
+  color: gray;
+}
+
+.product-main-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.product-info-name {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.product-category {
+  font-size: 16px;
+  color: gray;
+}
+
+.product-info-description {
+  margin-top: 10px;
+}
+
+.product-info-description p {
+  font-size: 12px;
+  color: #333;
+}
+
 #Experience {
+width: 300px; 
+height: 150px; 
+justify-content: center;
+align-items: center; 
+border-radius: 2px grey;
+font-size: 20px; 
+text-align: center; 
+box-shadow: 0 4px 10px rgba(196, 193, 193, 0.5); 
+
+}
+
+#EstrellasInput {
   width: 300px; 
   height: 150px; 
   justify-content: center;
@@ -328,20 +392,9 @@ background-color: rgb(254,153, 0);
   font-size: 20px; 
   text-align: center; 
   box-shadow: 0 4px 10px rgba(196, 193, 193, 0.5); 
-  
-  }
-  
-  #EstrellasInput {
-    width: 300px; 
-    height: 150px; 
-    justify-content: center;
-    align-items: center; 
-    border-radius: 2px grey;
-    font-size: 20px; 
-    text-align: center; 
-    box-shadow: 0 4px 10px rgba(196, 193, 193, 0.5); 
-    margin-bottom: 40px;
+
+  .Calification{
+    font-size: 10px;
     }
-    .Calification{
-      font-size: 10px;
-      }
+
+
