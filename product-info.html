@@ -10,6 +10,7 @@
   <link href="css/font-awesome.min.css" rel="stylesheet">
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/0d3f7e2579.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -36,13 +37,43 @@
       </div>
     </div>
   </nav>
-  <main>
-    <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
+  
+  <main> 
+    <div class="container product-info-container">
+      <img src="" alt="Imagen descriptiva" class="product-image" id="product-image">
+      <div class="product-details">
+        <h2 class="product-name" id="product-name"></h2>
+        <p class="product-cost" id="product-cost"></p>
+        <p class="currency" id="currency"></p>
+        <p class="soldCount" id="soldCount"></p>
+        <h3>Descripción</h3>
+        <p class="product-description" id="product-description"></p>
       </div>
     </div>
+    <div class="container"></div>
+      <ul id="ProductsComments">
+      </ul>
+      <button>Calificar</button>
+        
+      <div id="EstrellasInput">
+          <p>¿Qué te pareció la compra?</p>
+          <i class="fa-solid fa-star star" data-value="1"></i>
+          <i class="fa-solid fa-star star" data-value="2"></i>
+          <i class="fa-solid fa-star star" data-value="3"></i>
+          <i class="fa-solid fa-star star" data-value="4"></i>
+          <i class="fa-solid fa-star star" data-value="5"></i>
+          <p> <span class="Calification"style="margin-right: 75px;">Malo</span>
+            <span class="Calification">Excelente</span></p>
+        </div>
+  
+
+        <div id="Experience">
+        <p>¿Cómo fue tu experiencia?</p>
+        <textarea id="ComentarioInput" placeholder="Escriba aquí..." required></textarea>
+      </div>
+      <button>Enviar</button>
   </main>
+
   <footer class="text-muted">
     <div class="container">
       <p class="float-end">
@@ -51,6 +82,7 @@
       <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a></p>
     </div>
   </footer>
+
   <div id="spinner-wrapper">
     <div class="lds-ring">
       <div></div>
@@ -62,6 +94,7 @@
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/init.js"></script>
   <script src="js/product-info.js"></script>
+
 </body>
 
 </html>
