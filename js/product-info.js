@@ -1,30 +1,45 @@
+document.addEventListener("DOMContentLoaded", function() {
+  let producto = localStorage.getItem("selectedProductId");
+
+  if (producto) {
+    const url = PRODUCT_INFO_COMMENTS_URL+ producto + '.json'
+    fetch(url)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok ' + response.statusText);
+        }
+        return response.json();
+      })
+      .then(data => {
+        console.log(data);
+        ShowComments(data); // Show the stored comments
+      })
+      .catch(error => console.error('Error al obtener los comentarios:', error));
+  } else {
+    alert("No se ha seleccionado ningún producto.");
+  }
+});
 
 function ShowComments(comments) {
-    const CommentsList = document.getElementById('ProductsComments');
-    CommentsList.innerHTML = ''; 
-    comments.forEach(comentario => { 
-        const listaItem = document.createElement('li');
-        listaItem.innerHTML = 
-            `<i class="fa-solid fa-user"></i>
-            <strong>${comentario.product}:</strong> 
-            ${comentario.description} 
-            ${comentario.user} 
-            ${comentario.dateTime} 
-            <span>${comentario.score} <i class="fa-solid fa-star"></i></span>
-        `;
-  
-        CommentsList.appendChild(listaItem); 
-    });
-  }
-  document.addEventListener("DOMContentLoaded", function (e) {
-    let producto= localStorage.getItem("selectedProductId")
-    getJSONData(PRODUCT_INFO_COMMENTS_URL+ producto + '.json').then(function (resultObj) {
-        if (resultObj.status === "ok") {
-            let comments = resultObj.data.comments; 
-            ShowComments(comments);
-        }
-    }); 
+  const CommentsList = document.getElementById('ProductsComments');
+  CommentsList.innerHTML = ''; 
+  comments.forEach(comentario => { 
+    const listaItem = document.createElement('li');
+    listaItem.innerHTML = 
+        `<i class="fa-solid fa-user"></i>
+        <strong>${comentario.product}:</strong> 
+        ${comentario.description} 
+        ${comentario.user} 
+        ${comentario.dateTime} 
+        <span>${comentario.score} <i class="fa-solid fa-star"></i></span>
+    `;
+
+    CommentsList.appendChild(listaItem); 
   });
+}
+
+
+
 // Función para obtener los datos del producto de la API
 function getProductData(url) {
   fetch(url)
@@ -89,4 +104,6 @@ document.addEventListener("DOMContentLoaded", function() {
     alert("No se ha seleccionado ningún producto.");
   }
 });
+
+
 
