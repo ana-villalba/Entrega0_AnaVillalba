@@ -427,8 +427,18 @@ box-shadow: 0 4px 10px rgba(196, 193, 193, 0.5);
   border-radius: 2px grey;
   font-size: 20px; 
   text-align: center; 
-  box-shadow: 0 4px 10px rgba(196, 193, 193, 0.5); 
+  box-shadow: 0 4px 10px rgba(196, 193, 193, 0.5);
+}
 
-  .Calification{
+.Calification{
     font-size: 10px;
     }
+
+.ButtonComments{
+  width: 80px;
+  justify-content: center;
+  }
+
+
+
+
