@@ -17,7 +17,7 @@ function ShowComments(comments) {
     });
   }
   document.addEventListener("DOMContentLoaded", function (e) {
-    let producto= localStorage.getItem("product")
+    let producto= localStorage.getItem("selectedProductId")
     getJSONData(PRODUCT_INFO_COMMENTS_URL+ producto + '.json').then(function (resultObj) {
         if (resultObj.status === "ok") {
             let comments = resultObj.data.comments; 
