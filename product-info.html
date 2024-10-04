@@ -39,6 +39,8 @@
   </nav>
   
   <main> 
+    
+
     <div class="container product-info-container">
       <img src="" alt="Imagen descriptiva" class="product-image" id="product-image">
       <div class="product-details">
@@ -48,8 +50,36 @@
         <p class="soldCount" id="soldCount"></p>
         <h3>Descripción</h3>
         <p class="product-description" id="product-description"></p>
-      </div>
+      </div>  
+</main>
 
+<br>
+
+<div class="mb-6 col-md-4 container">
+  <button class="ButtonComments">Calificar</button>
+<br>
+<br>
+<div id="EstrellasInput">
+    <p>¿Qué te pareció la compra?</p>
+    <i class="fa-solid fa-star star" data-value="1"></i>
+    <i class="fa-solid fa-star star" data-value="2"></i>
+    <i class="fa-solid fa-star star" data-value="3"></i>
+    <i class="fa-solid fa-star star" data-value="4"></i>
+    <i class="fa-solid fa-star star" data-value="5"></i>
+    <p> <span class="Calification"style="margin-right: 75px;">Malo</span>
+      <span class="Calification">Excelente</span></p>
+  </div>
+  <br>
+  <div id="Experience">
+    <p>¿Cómo fue tu experiencia?</p>
+    <textarea id="ComentarioInput" placeholder="Escriba aquí..." required></textarea>
+  </div>
+  <br>
+  <button class="ButtonComments">Enviar</button>
+</div>
+
+
+ 
       <div class="related-products-section"></div>
       <h3>Productos que te pueden interesar</h3>
       <div class="related-products-container">
@@ -68,26 +98,7 @@
     <div class="container"></div>
       <ul id="ProductsComments">
       </ul>
-      <button>Calificar</button>
 
-      <div id="EstrellasInput">
-          <p>¿Qué te pareció la compra?</p>
-          <i class="fa-solid fa-star star" data-value="1"></i>
-          <i class="fa-solid fa-star star" data-value="2"></i>
-          <i class="fa-solid fa-star star" data-value="3"></i>
-          <i class="fa-solid fa-star star" data-value="4"></i>
-          <i class="fa-solid fa-star star" data-value="5"></i>
-          <p> <span class="Calification"style="margin-right: 75px;">Malo</span>
-            <span class="Calification">Excelente</span></p>
-        </div>
-  
-
-        <div id="Experience">
-        <p>¿Cómo fue tu experiencia?</p>
-        <textarea id="ComentarioInput" placeholder="Escriba aquí..." required></textarea>
-      </div>
-      <button>Enviar</button>
-  </main>
 
   <footer class="text-muted">
     <div class="container">
