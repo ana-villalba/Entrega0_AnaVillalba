@@ -12,27 +12,35 @@ document.addEventListener("DOMContentLoaded", function() {
       })
       .then(data => {
         console.log(data);
-        ShowComments(data); // Show the stored comments
+        ShowComments(data);// Mostrar los comentarios almacenados
+
       })
       .catch(error => console.error('Error al obtener los comentarios:', error));
   } else {
     alert("No se ha seleccionado ningún producto.");
   }
 });
-
+// Función para mostrar comentarios
 function ShowComments(comments) {
   const CommentsList = document.getElementById('ProductsComments');
   CommentsList.innerHTML = ''; 
   comments.forEach(comentario => { 
-    const listaItem = document.createElement('li');
+    const listaItem = document.createElement('p');
     listaItem.innerHTML = 
-        `<i class="fa-solid fa-user"></i>
-        <strong>${comentario.product}:</strong> 
-        ${comentario.description} 
-        ${comentario.user} 
-        ${comentario.dateTime} 
+        `
+        ${comentario.user}
+        <br>
         <span>${comentario.score} <i class="fa-solid fa-star"></i></span>
-    `;
+        ${comentario.dateTime}
+        <br>
+        ${comentario.description}
+        <br>
+        <strong><i class="fa-regular fa-thumbs-up"></i> Me gusta</strong> 
+    `
+
+    ;
+  
+
 
     CommentsList.appendChild(listaItem); 
   });
