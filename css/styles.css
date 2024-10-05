@@ -437,7 +437,17 @@ box-shadow: 0 4px 10px rgba(196, 193, 193, 0.5);
 .ButtonComments{
   width: 80px;
   justify-content: center;
+  margin-left: 220px;
   }
+
+.commentsInfo{
+  border-radius: 2px grey;
+  width: 10000px; 
+  }
+
+  .product-inter{
+    margin-left: 80px;
+    }
 
 
 
