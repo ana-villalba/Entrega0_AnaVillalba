@@ -448,7 +448,8 @@ box-shadow: 0 4px 10px rgba(196, 193, 193, 0.5);
   .product-inter{
     margin-left: 80px;
     }
-
-
-
+/* Color para Estrellas seleccionadas */
+.star.selected {
+  color: rgb(255, 215, 0); 
+}
 
