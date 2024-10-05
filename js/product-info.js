@@ -1,3 +1,4 @@
+let comments =[];  
 document.addEventListener("DOMContentLoaded", function() {
   let producto = localStorage.getItem("selectedProductId");
 
@@ -12,8 +13,8 @@ document.addEventListener("DOMContentLoaded", function() {
       })
       .then(data => {
         console.log(data);
-        ShowComments(data);// Mostrar los comentarios almacenados
-
+        ShowComments(data);
+        commentsData = data; // Guardar los comentarios en la variable global
       })
       .catch(error => console.error('Error al obtener los comentarios:', error));
   } else {
@@ -39,8 +40,6 @@ function ShowComments(comments) {
     `
 
     ;
-  
-
 
     CommentsList.appendChild(listaItem); 
   });
@@ -87,6 +86,64 @@ document.addEventListener("DOMContentLoaded", function() {
     getProductData(url);
   } else {
     alert("No se ha seleccionado ningún producto.");
+  }
+});
+document.addEventListener("DOMContentLoaded", function() {
+  const submitButton = document.getElementById('submit-comment');
+  let scoreValue= 0; 
+
+  // Maneja el evento de clic para las estrellas
+  const stars = document.querySelectorAll('.star'); 
+  stars.forEach(star => {
+      star.addEventListener('click', () => {
+          scoreValue = parseInt(star.getAttribute('data-value')); // Obtiene el valor de la estrella clicada
+          updateStars(); 
+          console.log('Calificación seleccionada:', scoreValue); // Muestra la calificación seleccionada
+      });
+  });
+
+  // Función para actualizar las estrellas seleccionadas
+  function updateStars() {
+      stars.forEach(star => {
+          star.classList.remove('selected'); // Limpia todas las selecciones
+          if (parseInt(star.getAttribute('data-value')) <= scoreValue) {
+              star.classList.add('selected'); // Marca las estrellas hasta la seleccionada
+          }
+      });
+  }
+
+  if (submitButton) {
+    submitButton.addEventListener('click', (e) => {
+      e.preventDefault();
+
+      const comentarioInput = document.getElementById('ComentarioInput').value;
+
+      // Comprobar si no se ha seleccionado ninguna calificación
+      if (scoreValue === 0) {
+        alert("Por favor, selecciona una calificación antes de enviar tu comentario.");
+        return; // Salir de la función si no se seleccionó ninguna calificación
+    }
+      // Recuperar el nombre del usuario desde el local storage
+      const username = localStorage.getItem('username')
+      // crear nuevo comentario 
+      const newComment = { 
+        description: comentarioInput,
+        user:  username,
+        dateTime: new Date().toISOString().split('T')[0],
+        score : scoreValue,  // Obtener la calificación seleccionada por el usuario (de 1 a 5)  
+        
+      };
+
+       
+       commentsData.push(newComment);
+       ShowComments(commentsData)
+       console.log (newComment)
+
+      // Limpiar los campos del formulario
+      document.getElementById('ComentarioInput').value = '';
+    });
+  } else {
+    console.error("Error en el envío del comentario");
   }
 });
 
