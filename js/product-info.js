@@ -147,28 +147,48 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 });
 
+// Función para mostrar los productos relacionados y agregar el evento de clic
 function setRelatedProducts(relatedProducts) {
-  relatedProducts.forEach((product, index) => {
-    if (index < 2) {  
-      const productName = product.name || 'Nombre no disponible';
-      const productImage = product.image || 'default.jpg'; 
+  const relatedProductsContainer = document.getElementById('related-products-container');
+  relatedProductsContainer.innerHTML = ''; // Limpiar el contenedor antes de agregar nuevos productos
 
-      document.querySelector(`#related-product-name-${index + 1}`).textContent = productName;
-      document.querySelector(`#related-product-image-${index + 1}`).src = productImage;
-    }
+  relatedProducts.forEach(product => {
+    const productItem = document.createElement('div');
+    productItem.classList.add('related-product');
+
+    productItem.innerHTML = `
+      <img src="${product.image}" alt="${product.name}" class="related-product-image">
+      <p class="related-product-name">${product.name}</p>
+    `;
+
+    // Añadir evento de clic para redirigir al producto relacionado
+    productItem.addEventListener('click', () => {
+      // Guardar el ID del producto relacionado en el localStorage
+      localStorage.setItem('selectedProductId', product.id);
+
+      // Redirigir a la página del producto (product-info.html)
+      window.location.href = 'product-info.html';
+    });
+
+    relatedProductsContainer.appendChild(productItem);
   });
 }
 
+// Ejecutar cuando la página esté cargada
 document.addEventListener("DOMContentLoaded", function() {
+  // Recuperar el identificador del producto desde localStorage
   let productId = localStorage.getItem("selectedProductId");
 
   if (productId) {
+    // Construir la URL con el ID del producto
     const url = `https://japceibal.github.io/emercado-api/products/${productId}.json`;
-    setRelatedProducts(url);
+    getProductData(url);
   } else {
     alert("No se ha seleccionado ningún producto.");
   }
 });
+
+
 
 
 
