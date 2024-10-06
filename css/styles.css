@@ -377,17 +377,21 @@ background-color: rgb(254,153, 0);
   margin-top: 20px;
 }
 
-.related-products-container {
+#related-products-container {
   display: flex;
-  justify-content: space-around;
-  gap: 20px;
+  justify-content: center;
+  gap:100px;
+  text-align: center;
+  margin-left: 300px;
+  width: 60%;
+  
 }
 
-.related-product {
+.related-products-grid {
   background-color: white;
   border: 1px solid #ddd;
   border-radius: 10px;
-  padding: 15px;
+  padding: 50px;
   text-align: center;
   width: 45%;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -452,4 +456,5 @@ box-shadow: 0 4px 10px rgba(196, 193, 193, 0.5);
 .star.selected {
   color: rgb(255, 215, 0); 
 }
+
 
