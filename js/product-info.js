@@ -77,6 +77,7 @@ function getProductData(url) {
     .then((res) => res.json())
     .then((data) => {
       // Asignación de los valores recibidos de la API
+       // Asignación de los valores recibidos de la API
       const productName = data.name || 'Nombre no disponible';
       const productCost = data.cost || 'Precio no disponible';
       const soldCount = data.soldCount || '0';
