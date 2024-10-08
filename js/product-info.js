@@ -107,11 +107,8 @@ function getProductData(url) {
 
 // Llamar a la función al cargar la página
 document.addEventListener("DOMContentLoaded", function() {
-  // Recuperar el identificador del producto desde localStorage
   let productId = localStorage.getItem("selectedProductId");
-
   if (productId) {
-    // Construir la URL con el ID del producto
     const url = `https://japceibal.github.io/emercado-api/products/${productId}.json`;
     getProductData(url); 
   } else {
