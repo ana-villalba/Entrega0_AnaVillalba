@@ -61,7 +61,7 @@ function loadCarouselImages(images) {
     }
 
     const imgElement = document.createElement('img');
-    imgElement.src = image; // Asegúrate de que la URL de la imagen sea correcta
+    imgElement.src = image; 
     imgElement.classList.add('d-block', 'w-100');
     imgElement.alt = `Imagen ${index + 1}`;
     carouselItem.appendChild(imgElement);
