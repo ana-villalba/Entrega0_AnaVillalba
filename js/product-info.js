@@ -45,49 +45,77 @@ function ShowComments(comments) {
   });
 }
 
+// Función para cargar las imágenes en el carrusel
+function loadCarouselImages(images) {
+  const carouselInner = document.getElementById('carousel-inner');
 
+  // Limpiar el contenido actual del carrusel
+  carouselInner.innerHTML = '';
+
+  // Iterar sobre las imágenes y agregar los elementos al carrusel
+  images.forEach((image, index) => {
+    const carouselItem = document.createElement('div');
+    carouselItem.classList.add('carousel-item');
+    if (index === 0) {
+      carouselItem.classList.add('active'); // Marcar la primera imagen como activa
+    }
+
+    const imgElement = document.createElement('img');
+    imgElement.src = image; // Asegúrate de que la URL de la imagen sea correcta
+    imgElement.classList.add('d-block', 'w-100');
+    imgElement.alt = `Imagen ${index + 1}`;
+    carouselItem.appendChild(imgElement);
+
+    // Agregar el item al carrusel
+    carouselInner.appendChild(carouselItem);
+  });
+}
 
 // Función para obtener los datos del producto de la API
 function getProductData(url) {
   fetch(url)
     .then((res) => res.json())
     .then((data) => {
-      // Asignación de los valores recibidos de la API
+       // Asignación de los valores recibidos de la API
       const productName = data.name || 'Nombre no disponible';
       const productCost = data.cost || 'Precio no disponible';
       const soldCount = data.soldCount || '0';
       const currency = data.currency || 'Moneda no disponible';
       const productDescription = data.description || 'Descripción no disponible';
-      const productImage = data.images[0] || 'default.jpg'; // Si no hay imagen, usa una por defecto
 
       // Mostrar la información en el HTML
       document.querySelector('#product-name').textContent = productName;
       document.querySelector('#product-cost').textContent = `Precio: $${productCost}`;
       document.querySelector('#soldCount').textContent = `Cantidad vendidos: ${soldCount}`;
       document.querySelector('#currency').textContent = `Moneda: ${currency}`;
-      document.querySelector('#product-image').src = productImage;
       document.querySelector('#product-description').textContent = productDescription;
-          // Cargar productos relacionados
-          if (data.relatedProducts) {
-            setRelatedProducts(data.relatedProducts);
-          }
+
+       // Cargar imágenes en el carrusel
+       if (data.images && data.images.length > 0) {
+        loadCarouselImages(data.images); // Llamar a la función para cargar las imágenes
+      } else {
+        console.log('No hay imágenes disponibles');
+      }
+
+      // Cargar productos relacionados
+      if (data.relatedProducts) {
+        setRelatedProducts(data.relatedProducts);
+      }
     })
-    .catch((error) => console.error('Error:', error)); // Captura errores de la solicitud
+    .catch((error) => console.error('Error:', error));
 }
 
-// Ejecutar cuando la página esté cargada
+// Llamar a la función al cargar la página
 document.addEventListener("DOMContentLoaded", function() {
-  // Recuperar el identificador del producto desde localStorage
   let productId = localStorage.getItem("selectedProductId");
-
   if (productId) {
-    // Construir la URL con el ID del producto
     const url = `https://japceibal.github.io/emercado-api/products/${productId}.json`;
-    getProductData(url);
+    getProductData(url); 
   } else {
     alert("No se ha seleccionado ningún producto.");
   }
 });
+
 document.addEventListener("DOMContentLoaded", function() {
   const submitButton = document.getElementById('submit-comment');
   let scoreValue= 0; 
@@ -147,28 +175,44 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 });
 
+// Función para mostrar los productos relacionados y agregar el evento de clic
 function setRelatedProducts(relatedProducts) {
-  relatedProducts.forEach((product, index) => {
-    if (index < 2) {  
-      const productName = product.name || 'Nombre no disponible';
-      const productImage = product.image || 'default.jpg'; 
+  const relatedProductsContainer = document.getElementById('related-products-container');
+  relatedProductsContainer.innerHTML = ''; // Limpiar el contenedor antes de agregar nuevos productos
 
-      document.querySelector(`#related-product-name-${index + 1}`).textContent = productName;
-      document.querySelector(`#related-product-image-${index + 1}`).src = productImage;
-    }
+  relatedProducts.forEach(product => {
+    const productItem = document.createElement('div');
+    productItem.classList.add('related-product');
+
+    productItem.innerHTML = `
+      <img src="${product.image}" alt="${product.name}" class="related-product-image">
+      <p class="related-product-name">${product.name}</p>
+    `;
+
+    // Añadir evento de clic para redirigir al producto relacionado
+    productItem.addEventListener('click', () => {
+      // Guardar el ID del producto relacionado en el localStorage
+      localStorage.setItem('selectedProductId', product.id);
+
+      // Redirigir a la página del producto (product-info.html)
+      window.location.href = 'product-info.html';
+    });
+
+    relatedProductsContainer.appendChild(productItem);
   });
 }
 
+// Ejecutar cuando la página esté cargada
 document.addEventListener("DOMContentLoaded", function() {
+  // Recuperar el identificador del producto desde localStorage
   let productId = localStorage.getItem("selectedProductId");
 
   if (productId) {
+    // Construir la URL con el ID del producto
     const url = `https://japceibal.github.io/emercado-api/products/${productId}.json`;
-    setRelatedProducts(url);
+    getProductData(url);
   } else {
     alert("No se ha seleccionado ningún producto.");
   }
 });
-
-
 

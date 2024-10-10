@@ -38,20 +38,34 @@
     </div>
   </nav>
   
-  <main> 
-    
-
+  <main>
     <div class="container product-info-container">
-      <img src="" alt="Imagen descriptiva" class="product-image" id="product-image">
-      <div class="product-details">
-        <h2 class="product-name" id="product-name"></h2>
-        <p class="product-cost" id="product-cost"></p>
-        <p class="currency" id="currency"></p>
-        <p class="soldCount" id="soldCount"></p>
+      <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner" id="carousel-inner">
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+  
+      
+      <div class="product-details mt-4">
+        <h2 class="product-name" id="product-name">Nombre del Producto</h2>
+        <p class="product-cost" id="product-cost">Precio: $0.00</p>
+        <p class="currency" id="currency">Moneda</p>
+        <p class="soldCount" id="soldCount">Cantidad vendida: 0</p>
         <h3>Descripción</h3>
-        <p class="product-description" id="product-description"></p>
-      </div>  
-</main>
+        <p class="product-description" id="product-description">Descripción del producto aquí...</p>
+      </div>
+    </div>
+  </main>
+  
+  
 
 <br>
 
@@ -82,24 +96,12 @@
   <br>
   <button id="submit-comment" class="ButtonComments">Enviar</button>
 </div>
-
-
  
-      <div class="related-products-section"></div>
-      <h3 class="product-inter">Productos que te pueden interesar</h3>
-      <div class="related-products-container">
-          <div class="related-product">
-              <img src="" alt="Producto relacionado 1" class="related-product-image" id="related-product-image-1">
-              <h4 id="related-product-name-1">Producto 1</h4>
-          </div>
-          <div class="related-product">
-              <img src="" alt="Producto relacionado 2" class="related-product-image" id="related-product-image-2">
-              <h4 id="related-product-name-2">Producto 2</h4>
-          </div>
-      </div>
+  <h3 class="product-inter">Productos que te pueden interesar</h3> 
+  <br>
+  <div id="related-products-container" class="related-products-grid" class="related-products-section">
+   
   </div>
-  
-    
 
 
   <footer class="text-muted">
