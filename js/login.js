@@ -1,6 +1,6 @@
 function login(){
     let usuario = document.getElementById("username").value;
-        let contraseña = document.getElementById("password").value;
+    let contraseña = document.getElementById("password").value;
      if (usuario != "" && contraseña != "") {
     sessionStorage.setItem("sesion", true);
             localStorage.setItem ("username", usuario);
@@ -12,4 +12,4 @@ function login(){
         }
     
         }
-    
+
