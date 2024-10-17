@@ -25,6 +25,3 @@ function login() {
             window.location.href = "my-profile.html";
         }
         
-
-
-        
