@@ -17,10 +17,12 @@ sendprofile.addEventListener('click', function() {
   localStorage.setItem('surname', surname.value);
   localStorage.setItem('email', email.value);
 
-  sessionStorage.setItem('session', 'true');
+  localStorage.setItem('session', 'true');
    // Limpiar mensaje de error si existía
     mensajeError.textContent = '';
     alert('Datos guardados exitosamente');
+    
+    window.location.href = 'index.html';
   });
 
 // Recupera el email del localStorage
