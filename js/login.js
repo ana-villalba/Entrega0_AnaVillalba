@@ -22,6 +22,6 @@ function login() {
             localStorage.setItem("username", usuario);
         
             // Redireccionar al perfil o a otra página que desees
-            window.location.href = "my-profile.html";
+            window.location.href = "index.html";
         }
         

@@ -13,11 +13,6 @@ document.addEventListener("DOMContentLoaded", function(){
     });
 });
 
-document.addEventListener("DOMContentLoaded", function () {
-    if (!sessionStorage.getItem("sesion")) {
-            window.location.href = "login.html";
-        } 
-    });
     document.addEventListener("DOMContentLoaded", function() {
     var username= localStorage.getItem("username");
     if (username) {
