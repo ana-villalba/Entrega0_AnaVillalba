@@ -216,3 +216,23 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 });
 
+//Botón modo día/modo noche
+
+const themeToggleBtn = document.getElementById('theme-toggle');
+const currentTheme=localStorage.getItem('theme');
+
+if (currentTheme ==='dark'){
+  document.body.classList.add('dark-mode');
+  themeToggleBtn.classList.add('dark');
+}
+
+themeToggleBtn.addEventListener('click', function(){
+  document.body.classList.toggle('dark-mode');
+    themeToggleBtn.classList.toggle('dark');
+    let theme = document.body.classList.contains('dark-mode') ? 'dark' : 'light';
+    localStorage.setItem('theme', theme)
+    
+});
+
+
+
