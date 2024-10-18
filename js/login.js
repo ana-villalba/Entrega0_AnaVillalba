@@ -17,14 +17,11 @@ function login() {
                 return;
             }
         
-            // Guardar el estado de usuario logueado y el email en localStorage
-            localStorage.setItem("sesion", true);
+            // Guardar el estado de usuario logueado y el email 
+            sessionStorage.setItem("sesion", true);
             localStorage.setItem("username", usuario);
         
             // Redireccionar al perfil o a otra página que desees
-            window.location.href = "my-profile.html";
+            window.location.href = "index.html";
         }
-        
-
-
         
