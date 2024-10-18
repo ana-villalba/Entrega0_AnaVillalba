@@ -14,7 +14,7 @@
 
 <body>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
-    <div class="container">
+    <div class="container" >
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -36,6 +36,11 @@
            <li class="nav-item">
             <a class="nav-link" href="my-profile.html">Mi Perfil</a>
           </li>
+          <li class="nav-item">
+            <div class="theme-toggle">
+              <div id="theme-toggle" class="toggle-button"></div>
+          </div>
+        </li>
             <li class="nav-item dropdown">
               <button class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" id="username-display">
                 Usuario
@@ -87,7 +92,7 @@
             </select>
 
 
-    <div class="container col-md-8">
+    <div class="container col-md-8" id="container">
       <h2 class="listproducts">Listado de productos</h2>
       <p id="namecategories" class="carscat">
       <p>
@@ -101,7 +106,7 @@
   </main>
 
   <footer class="text-muted">
-    <div class="container">
+    <div class="container" id="container">
       <div class="productId">
       <p class="float-end">
         <a href="#">Volver arriba</a>
