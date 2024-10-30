@@ -235,4 +235,24 @@ themeToggleBtn.addEventListener('click', function(){
 });
 
 
+// Funcionalidad boton comprar
+// Seleccionamos el botón "Comprar" por su id
+const comprarButton = document.getElementById('comprar');
 
+// Función para guardar la información del producto y redirigir a la pantalla de carrito
+comprarButton.addEventListener('click', () => {
+  // Obtenemos la información del producto desde los elementos de la página
+  const productInfo = {
+    name: document.getElementById('product-name').innerText,
+    price: document.getElementById('product-cost').innerText,
+    currency: document.getElementById('currency').innerText,
+    soldCount: document.getElementById('soldCount').innerText,
+    description: document.getElementById('product-description').innerText
+  };
+
+  // Guardamos la información del producto en el localStorage
+  localStorage.setItem('productoComprado', JSON.stringify(productInfo));
+
+  // Redirigimos a la pantalla de carrito
+  window.location.href = 'cart.html';
+});
