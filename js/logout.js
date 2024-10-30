@@ -16,8 +16,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
 // Función para cerrar sesión
 function cerrarSesion() {
-  sessionStorage.removeItem("sesion");
-  localStorage.removeItem("username");
+  sessionStorage.clear("sesion");
+  localStorage.clear("username");
   window.location.href = "login.html";
 }
     
