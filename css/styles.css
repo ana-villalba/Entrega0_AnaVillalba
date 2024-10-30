@@ -441,7 +441,7 @@ box-shadow: 0 4px 10px rgba(196, 193, 193, 0.5);
 .ButtonComments{
   width: 80px;
   justify-content: center;
-  margin-left: 220px;
+  margin-left: 205px;
   }
 
 .commentsInfo{
@@ -450,7 +450,9 @@ box-shadow: 0 4px 10px rgba(196, 193, 193, 0.5);
   }
 
   .product-inter{
-    margin-left: 80px;
+    font-size: 20px;
+    margin-left: 100px;
+    margin-right: 120px;
     }
 
 /* Color para Estrellas seleccionadas */
