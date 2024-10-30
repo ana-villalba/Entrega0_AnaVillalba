@@ -59,38 +59,39 @@
   </nav>
   
   <main class="pb-5 container">
-    
-
-<br>
-        <div class="mb-3">
-          <form id="filter-form">
-            <div class="row">
-              <div class="col-md-4">
-                <label for="min-price" class="form-label">Precio Mínimo</label>
-                <input type="number" id="min-price" class="form-control" placeholder="0">
-              </div>
-              <div class="col-md-4">
-                <label for="max-price" class="form-label">Precio Máximo</label>
-                <input type="number" id="max-price" class="form-control" placeholder="1000">
-              </div>
-              <div class="col-md-4">
-                <button type="submit" class="btn btn-primary mt-4">Filtrar</button>
-              </div>
-            </div>
-          </form>
-  <br>
-        <div class="col-md-6">
-          <input type="search" id="searchInput" class="form-control" placeholder="Buscar productos...">
-        </form>
+    <br>
+    <div class="mb-3">
+      <form id="filter-form">
+        <div class="row">
+          <div class="col-md-4">
+            <label for="min-price" class="form-label">Precio Mínimo</label>
+            <input type="number" id="min-price" class="form-control" placeholder="0">
+          </div>
+          <div class="col-md-4">
+            <label for="max-price" class="form-label">Precio Máximo</label>
+            <input type="number" id="max-price" class="form-control" placeholder="1000">
+          </div>
+          <div class="col-md-4">
+            <button type="submit" class="btn btn-primary mt-4">Filtrar</button>
+          </div>
         </div>
-          <div class="mt-4">
-            <label for="sort-select" class="form-label">Ordenar por</label>
-            <select id="sort-select" class="form-select">
-              <option value="price-asc">Precio Ascendente</option>
-              <option value="price-desc">Precio Descendente</option>
-              <option value="relevance">Más relevante</option>
-            </select>
+      </form>
+<br>
 
+<div class="col-md-6 mx-auto text-center">
+<input type="search" id="searchInput" class="form-control mb-3" placeholder="Buscar productos...">
+</div>
+
+
+<div class="col-md-6 mx-auto text-center mt-4">
+<label for="sort-select" class="form-label">Ordenar por</label>
+<select id="sort-select" class="form-select">
+<option value="price-asc">Precio Ascendente</option>
+<option value="price-desc">Precio Descendente</option>
+<option value="relevance">Más relevante</option>
+</select>
+</div>
+<br>
 
     <div class="container col-md-8" id="container">
       <h2 class="listproducts">Listado de productos</h2>
@@ -116,7 +117,7 @@
     </div>
     </div>
   </footer>
-  <div class="lds-ring">
+ 
     <div></div>
     <div></div>
     <div></div>
