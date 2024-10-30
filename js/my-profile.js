@@ -18,12 +18,34 @@ sendprofile.addEventListener('click', function() {
   localStorage.setItem('email', email.value);
 
   localStorage.setItem('session', 'true');
-   // Limpiar mensaje de error si existía
-    mensajeError.textContent = '';
-    alert('Datos guardados exitosamente');
-    
-    window.location.href = 'index.html';
-  });
+  // Limpiar mensaje de error si existía
+   mensajeError.textContent = '';
+   alert('Datos guardados exitosamente');
+   
+   window.location.href = 'index.html';
+ });
+
+ document.addEventListener("DOMContentLoaded", function() {
+  const user = localStorage.getItem('user');
+  // Muestra el nombre solo si existe
+  if (user) {
+    nombre.value = user ;
+  } else {
+    nombre.value = 'No se ha ingresado ningún nombre.';
+  
+  }
+})
+
+document.addEventListener("DOMContentLoaded", function() {
+  const surname = localStorage.getItem('surname');
+  // Muestra el nombre solo si existe
+  if (surname) {
+    apellido.value = surname ;
+  } else {
+    apellido.value = 'No se ha ingresado ningún nombre.';
+  
+  }
+})
 
 // Recupera el email del localStorage
 document.addEventListener("DOMContentLoaded", function() {
