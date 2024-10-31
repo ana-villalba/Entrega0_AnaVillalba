@@ -205,7 +205,10 @@ a.custom-card:hover {
   
 
 .product-image{
-  padding: 20px;
+  padding: 5px;
+  display: flex;
+  max-width: fit-content;
+  height: auto;
 }
 
 .product-name{
@@ -696,11 +699,13 @@ body.dark-mode {
 
 .cart {
   max-width: 800px;
+  flex-grow: 1;
   margin: 0 auto;
   padding: 20px;
   background-color: #FFFFFF;
   border: 1px solid #ddd;
   border-radius: 8px;
+  
 }
 
 .cart-title {
@@ -708,6 +713,10 @@ body.dark-mode {
   font-weight: bold;
   font-size: 25px;
   margin-bottom: 40px;
+}
+.cart-item {
+  align-items: flex-start; 
+  margin-bottom: 20px; 
 }
 .product-price {
   font-family: inherit;
@@ -745,7 +754,7 @@ h9 {
   font-size: 25px;
   font-weight: bold;
   font-family: sans-serif;
-  
+  float:unset;  
 }
 
 h2 {
@@ -754,8 +763,18 @@ h2 {
 }
 /*para la img cuando se pueda ver*/
 .productoComprado {
-  max-width: 100%; 
-  height: auto; 
-  margin-bottom: 15px; 
+    width: 10%; 
+    height: auto;
+    float: left;
+}
+.btn-remove {
+  background: none; /* Sin fondo */
+  border: none;
+  color: rgb(58, 57, 57); 
+  cursor: pointer; 
+  margin-left: 10px; 
 }
 
+.btn-remove:hover {
+  color: darkred; /* Color al pasar el mouse */
+}
