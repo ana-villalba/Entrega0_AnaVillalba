@@ -247,7 +247,7 @@ comprarButton.addEventListener('click', () => {
     price: document.getElementById('product-cost').innerText,
     currency: document.getElementById('currency').innerText,
     soldCount: document.getElementById('soldCount').innerText,
-    description: document.getElementById('product-description').innerText
+    description: document.getElementById('product-description').innerText,
   };
 
   // Guardamos la información del producto en el localStorage
