@@ -12,17 +12,20 @@ document.addEventListener('DOMContentLoaded', () => {
         const productName = product.name || 'Nombre no disponible';
         const productPrice = product.price;
         const currency = product.currency;
+        const productImage = product.image || ''; 
         
 
 
         // Mostrar la información en el HTML del carrito
         cartContent.innerHTML = `
+            <img src="${productImage}" alt="${productName}" class="cart-product-image">
             <h9>${productName}</h9>
             <p> <strong class="product-price">${productPrice}</strong></p>
             <p>${currency}</p>
             <button id="btn-decrease" onclick="changeQuantity(-1)">-</button>
             <input type="number" id="quantity" value="1" min="1" onchange="updateSubtotal()">
             <button id="btn-increase" onclick="changeQuantity(1)">+</button>
+            <button class="btn-remove" onclick="removeFromCart()"><i class="fas fa-trash"></i></button>
             
         `;
         updateSubtotal(); // Actualizar el subtotal al cargar
@@ -32,6 +35,18 @@ document.addEventListener('DOMContentLoaded', () => {
         itemCountEl.textContent = '0'; // Actualizar el conteo de items
     }
 });
+// Función para eliminar el producto del carrito
+function removeFromCart() {
+  // Elimina el producto de localStorage
+  localStorage.removeItem('productoComprado');
+  
+  document.getElementById('cart-content').innerHTML = "<p>El carrito está vacío.</p>";
+  document.getElementById('subtotal').textContent = "$0";
+  document.getElementById('item-count').textContent = "0";
+  document.querySelector('.comprar').style.display = 'none';
+  
+  // Muestra una alerta de confirmación
+  alert("Producto eliminado del carrito");   }
 
 // Función para cambiar la cantidad
 function changeQuantity(amount) {
