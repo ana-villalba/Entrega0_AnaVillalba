@@ -99,3 +99,21 @@ function comprar() {
     localStorage.removeItem('productoComprado');
     window.location.reload();
 }
+
+let cartCount = 0;
+
+function addToCart() {
+    cartCount++;
+
+    document.getElementById('cart-count').innerText = cartCount;
+}
+
+
+
+function updateCartCount(){
+    let = cart
+    JSON.parse(localStorage.getItem("cart")) || [];
+    let totalCount = cart.reduce((count, product) => count + product.quantity, 0);
+    
+    document.getElementById("cart-count").innerText = totalCount;
+}
