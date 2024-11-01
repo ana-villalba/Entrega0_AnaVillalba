@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
         cartContent.innerHTML = `
             <img src="${productImage}" alt="${productName}" class="cart-product-image">
             <h9>${productName}</h9>
-            <p> <strong class="product-price">${productPrice}</strong></p>
+            <p> <strong class="product-price" id="productprice">${productPrice}</strong></p>
             <p>${currency}</p>
             <button id="btn-decrease" onclick="changeQuantity(-1)">-</button>
             <input type="number" id="quantity" value="1" min="1" onchange="updateSubtotal()">
@@ -63,14 +63,25 @@ function changeQuantity(amount) {
     updateDecreaseButtonState(); // Actualizar el estado del botón de decrecimiento
 }
 
+
+
 // Función para actualizar el subtotal
 function updateSubtotal() {
-    const quantityInput = document.getElementById('quantity');
-    const productPrice = parseFloat(document.querySelector('.product-price').textContent);
-    const quantity = parseInt(quantityInput.value);
+    // Obtener el elemento con el ID 'quantity'
+    const quantityInput = document.getElementById('quantity'); 
+    // Obtener el elemento con el ID 'total-carrito'
+    const subtotalElement = document.getElementById('total-carrito'); 
+    // Obtener el elemento con el ID 'productprice'
+    const productPriceElement = document.getElementById('productprice');
+
+    const productPriceText = productPriceElement.textContent;
+    // Extraer solo el número, eliminando texto y símbolos
+    const productPrice = parseFloat(productPriceText.replace(/[^0-9.-]+/g, '')); //Se elimina el texto
+    const quantity = parseInt(quantityInput.value) || 0; 
+
+    subtotalElement.innerHTML = productPrice * quantity; //Se calcula el importe del Subtotal
     
-    const subtotal = productPrice * quantity;
-    document.getElementById('total-carrito')
+
 }
 
 // Función para actualizar el estado del botón de decrecimiento
