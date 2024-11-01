@@ -778,3 +778,18 @@ h2 {
 .btn-remove:hover {
   color: darkred; /* Color al pasar el mouse */
 }
+ /*Boton de agregar al carrito*/
+
+ .cart-button {
+    padding: 10px 20px;
+    margin: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+
+.cart-button {
+    background-color: #008CBA; /* Azul */
+    color: white;
+    border: none;
+}

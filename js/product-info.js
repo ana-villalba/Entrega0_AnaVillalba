@@ -257,3 +257,4 @@ comprarButton.addEventListener('click', () => {
   // Redirigimos a la pantalla de carrito
   window.location.href = 'cart.html';
 });
+
