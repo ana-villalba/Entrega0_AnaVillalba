@@ -8,6 +8,8 @@
   <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
+
+
   <style>
     .bd-placeholder-img {
       font-size: 1.125rem;
@@ -45,24 +47,76 @@
             <a class="nav-link" href="sell.html">Vender</a>
           </li>
           <li class="nav-item">
+            <a class="nav-link" href="login.html">Ingresar</a>
           </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="my-profile.html">Mi Perfil</a>
+          </li>
+
+          <li class="nav-item">
+            <span class="nav-link" id="username-display"></span>
+          </li>
+          <li class="nav-item">
+            <div class="theme-toggle">
+              <div id="theme-toggle" class="toggle-button"></div>
+          </div>
+        </li>
+
         </ul>
       </div>
     </div>
   </nav>
   <main>
-    <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
-      </div>
+
+    <!-- Imagenes superiores -->
+    <br>
+    <div class="mercado center-content">
+      <img src="img/img-mercado.png" alt="imagen">
     </div>
+
+    <div class="center-content">
+      <div class="profile">
+        <img src="img/profille.jpg" alt="foto-perfil" id="imagenPerfil">
+      </div>
+      <input type="file" id="inputImagen" accept="image/*">
+      <button id="buttonEditarPerfil">Editar</button>
+
+      <!-- Form my profile -->
+      <br>
+      <form action="myprofile()" method="post">
+        <div class="input-profile mb-3">
+          <input type="text" id="user" name="username" placeholder="Nombre *" autocomplete="on" required>
+        </div>
+        <div class="input-profile mb-3">
+          <input type="text" id="middlename" name="username" placeholder="Segundo-Nombre" autocomplete="on">
+        </div>
+        <div class="input-profile mb-3">
+          <input type="text" id="surname" name="username" placeholder="Apellido *" autocomplete="on" required>
+        </div>
+        <div class="input-profile mb-3">
+          <input type="text" id="middlesurname" name="username" placeholder="Segundo-Apellido" autocomplete="on">
+        </div>
+        <div class="input-profile mb-3">
+          <input type="email" id="email" name="email" placeholder="Ingresar E-mail *" autocomplete="on" required>
+        </div>
+        <div class="input-profile mb-3">
+          <input type="number" id="number" name="number" placeholder="Teléfono de contacto" autocomplete="on">
+        </div>
+        <p id="mensajeError" style="color: red;"></p>
+        <button class="button-profile" type="button" id="sendprofile">Guardar cambios</button>
+      </form>
   </main>
+
+
+  <!-- Footer -->
   <footer class="text-muted">
-    <div class="container">
+    <div class="container" id="container">
       <p class="float-end">
         <a href="#">Volver arriba</a>
       </p>
-      <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a></p>
+      <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a>
+      </p>
     </div>
   </footer>
   <script src="js/bootstrap.bundle.min.js"></script>

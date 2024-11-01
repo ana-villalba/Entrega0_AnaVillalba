@@ -64,6 +64,7 @@ function changeQuantity(amount) {
 }
 
 
+
 // Función para actualizar el subtotal
 function updateSubtotal() {
     // Obtener el elemento con el ID 'quantity'
@@ -82,7 +83,6 @@ function updateSubtotal() {
     
 
 }
-
 
 // Función para actualizar el estado del botón de decrecimiento
 function updateDecreaseButtonState() {

@@ -216,3 +216,44 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 });
 
+//Botón modo día/modo noche
+
+const themeToggleBtn = document.getElementById('theme-toggle');
+const currentTheme=localStorage.getItem('theme');
+
+if (currentTheme ==='dark'){
+  document.body.classList.add('dark-mode');
+  themeToggleBtn.classList.add('dark');
+}
+
+themeToggleBtn.addEventListener('click', function(){
+  document.body.classList.toggle('dark-mode');
+    themeToggleBtn.classList.toggle('dark');
+    let theme = document.body.classList.contains('dark-mode') ? 'dark' : 'light';
+    localStorage.setItem('theme', theme)
+    
+});
+
+
+// Funcionalidad boton comprar
+// Seleccionamos el botón "Comprar" por su id
+const comprarButton = document.getElementById('comprar');
+
+// Función para guardar la información del producto y redirigir a la pantalla de carrito
+comprarButton.addEventListener('click', () => {
+  // Obtenemos la información del producto desde los elementos de la página
+  const productInfo = {
+    name: document.getElementById('product-name').innerText,
+    price: document.getElementById('product-cost').innerText,
+    currency: document.getElementById('currency').innerText,
+    soldCount: document.getElementById('soldCount').innerText,
+    description: document.getElementById('product-description').innerText,
+    image: document.querySelector('#carousel-inner img').src
+  };
+
+  // Guardamos la información del producto en el localStorage
+  localStorage.setItem('productoComprado', JSON.stringify(productInfo));
+
+  // Redirigimos a la pantalla de carrito
+  window.location.href = 'cart.html';
+});

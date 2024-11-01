@@ -30,21 +30,30 @@
           <li class="nav-item">
             <a class="nav-link" href="sell.html">Vender</a>
           </li>
+          
           <li class="nav-item">
             <a class="nav-link" href="products.html">Productos</a>
           </li> 
-          <li class="nav-item">
-            <a class="nav-link" href="login.html">Ingresar</a>
-          </li> 
 
+          <li class="nav-item">
+            <div class="theme-toggle">
+              <div id="theme-toggle" class="toggle-button"></div>
+          </div>
+                </li>
+
+          
+          <li class="nav-item dropdown">
+            <button class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" id="username-display">
+              Usuario
+            </button>
+            <ul class="dropdown-menu dropdown-menu-dark" >
+              <li><a class="dropdown-item" href="cart.html">Mi carrito</a></li>
+              <li><a class="dropdown-item" href="my-profile.html">Mi perfil</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#" onclick="cerrarSesion()">Cerrar sesión</a></li>
         </ul>
       </div>
     </div>
-    <div class="navbar navbar-light bg-light"></div>
-    <form class="form-inline d-flex">
-      <input class="form-control mr-sm-2" id="search-input" type="search" placeholder="Buscar ..." aria-label="Search">
-      <button class="btn btn-outline-light my-2 my-sm-0 m-1" type="submit" id="btn">Buscar</button>
-    </form>
   </nav>
   <main class="pb-5">
     <div class="text-center p-4">
@@ -86,7 +95,7 @@
         </div>
       </div>
       <div class="row">
-        <div class="list-group" id="cat-list-container">
+        <div class="list-group" id="cat-list-container" >
         </div>
       </div>
     </div>
@@ -111,6 +120,7 @@
   <script src="js/init.js"></script>
   <script src="js/categories.js"></script>
   <script src="js/search.js"></script>
+  <script src="js/logout.js"></script>
 </body>
 
 </html>

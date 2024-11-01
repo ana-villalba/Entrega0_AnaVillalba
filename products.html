@@ -14,7 +14,7 @@
 
 <body>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
-    <div class="container">
+    <div class="container" >
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -33,53 +33,67 @@
           <li class="nav-item">
             <a class="nav-link active" href="products.html">Productos</a>
           </li>
+           <li class="nav-item">
+            <a class="nav-link" href="my-profile.html">Mi Perfil</a>
+          </li>
           <li class="nav-item">
-            <a class="nav-link" href="login.html">Ingresar</a>
+            <div class="theme-toggle">
+              <div id="theme-toggle" class="toggle-button"></div>
+          </div>
+        </li>
+            <li class="nav-item dropdown">
+              <button class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" id="username-display">
+                Usuario
+              </button>
+              <ul class="dropdown-menu dropdown-menu-dark">
+                <li><a class="dropdown-item" href="cart.html">Mi carrito</a></li>
+                <li><a class="dropdown-item" href="my-profile.html">Mi perfil</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="#" onclick="cerrarSesion()">Cerrar sesión</a></li>
+              </ul>
+            </li>
         </ul>
       </div>
     </div>
-    <div class="navbar navbar-light bg-light"></div>
-    <form class="form-inline d-flex">
-      <input class="form-control mr-sm-2" id="search-input" type="search" placeholder="Buscar ..." aria-label="Search">
-      <button class="btn btn-outline-light my-2 my-sm-0 m-1" type="submit" id="btn">Buscar</button>
-    </form>
+  
   </nav>
   
   <main class="pb-5 container">
-    
-
-<br>
-        <div class="mb-3">
-          <form id="filter-form">
-            <div class="row">
-              <div class="col-md-4">
-                <label for="min-price" class="form-label">Precio Mínimo</label>
-                <input type="number" id="min-price" class="form-control" placeholder="0">
-              </div>
-              <div class="col-md-4">
-                <label for="max-price" class="form-label">Precio Máximo</label>
-                <input type="number" id="max-price" class="form-control" placeholder="1000">
-              </div>
-              <div class="col-md-4">
-                <button type="submit" class="btn btn-primary mt-4">Filtrar</button>
-              </div>
-            </div>
-          </form>
-  <br>
-        <div class="col-md-6">
-          <input type="search" id="searchInput" class="form-control" placeholder="Buscar productos...">
-        </form>
+    <br>
+    <div class="mb-3">
+      <form id="filter-form">
+        <div class="row">
+          <div class="col-md-4">
+            <label for="min-price" class="form-label">Precio Mínimo</label>
+            <input type="number" id="min-price" class="form-control" placeholder="0">
+          </div>
+          <div class="col-md-4">
+            <label for="max-price" class="form-label">Precio Máximo</label>
+            <input type="number" id="max-price" class="form-control" placeholder="1000">
+          </div>
+          <div class="col-md-4">
+            <button type="submit" class="btn btn-primary mt-4">Filtrar</button>
+          </div>
         </div>
-          <div class="mt-4">
-            <label for="sort-select" class="form-label">Ordenar por</label>
-            <select id="sort-select" class="form-select">
-              <option value="price-asc">Precio Ascendente</option>
-              <option value="price-desc">Precio Descendente</option>
-              <option value="relevance">Más relevante</option>
-            </select>
+      </form>
+<br>
+
+<div class="col-md-6 mx-auto text-center">
+<input type="search" id="searchInput" class="form-control mb-3" placeholder="Buscar productos...">
+</div>
 
 
-    <div class="container col-md-8">
+<div class="col-md-6 mx-auto text-center mt-4">
+<label for="sort-select" class="form-label">Ordenar por</label>
+<select id="sort-select" class="form-select">
+<option value="price-asc">Precio Ascendente</option>
+<option value="price-desc">Precio Descendente</option>
+<option value="relevance">Más relevante</option>
+</select>
+</div>
+<br>
+
+    <div class="container col-md-8" id="container">
       <h2 class="listproducts">Listado de productos</h2>
       <p id="namecategories" class="carscat">
       <p>
@@ -93,7 +107,7 @@
   </main>
 
   <footer class="text-muted">
-    <div class="container">
+    <div class="container" id="container">
       <div class="productId">
       <p class="float-end">
         <a href="#">Volver arriba</a>
@@ -103,7 +117,7 @@
     </div>
     </div>
   </footer>
-  <div class="lds-ring">
+ 
     <div></div>
     <div></div>
     <div></div>
@@ -114,6 +128,8 @@
   <script src="js/init.js"></script>
   <script src="js/products.js"></script>
   <script src="js/search.js"></script>
+  <script src="js/logout.js"></script>
+
 
 </body>
 
