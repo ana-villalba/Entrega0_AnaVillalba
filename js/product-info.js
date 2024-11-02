@@ -101,6 +101,24 @@ function getProductData(url) {
       if (data.relatedProducts) {
         setRelatedProducts(data.relatedProducts);
       }
+
+// Funcionalidad boton comprar
+// Seleccionamos el botón "Comprar" por su id
+const comprarButton = document.getElementById('comprar');
+
+// Función para guardar la información del producto y redirigir a la pantalla de carrito
+comprarButton.addEventListener('click', () => {
+
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  const newProduct = { ...data, quantity: 1}
+  cart.push(newProduct)
+  // Guardamos la información del producto en el localStorage
+  localStorage.setItem('cart', JSON.stringify(cart));
+
+  // Redirigimos a la pantalla de carrito
+  window.location.href = 'cart.html';
+});
+
     })
     .catch((error) => console.error('Error:', error));
 }
@@ -202,19 +220,7 @@ function setRelatedProducts(relatedProducts) {
   });
 }
 
-// Ejecutar cuando la página esté cargada
-document.addEventListener("DOMContentLoaded", function() {
-  // Recuperar el identificador del producto desde localStorage
-  let productId = localStorage.getItem("selectedProductId");
 
-  if (productId) {
-    // Construir la URL con el ID del producto
-    const url = `https://japceibal.github.io/emercado-api/products/${productId}.json`;
-    getProductData(url);
-  } else {
-    alert("No se ha seleccionado ningún producto.");
-  }
-});
 
 //Botón modo día/modo noche
 
@@ -235,31 +241,10 @@ themeToggleBtn.addEventListener('click', function(){
 });
 
 
-// Funcionalidad boton comprar
-// Seleccionamos el botón "Comprar" por su id
-const comprarButton = document.getElementById('comprar');
-
-// Función para guardar la información del producto y redirigir a la pantalla de carrito
-comprarButton.addEventListener('click', () => {
-  // Obtenemos la información del producto desde los elementos de la página
-  const productInfo = {
-    name: document.getElementById('product-name').innerText,
-    price: document.getElementById('product-cost').innerText,
-    currency: document.getElementById('currency').innerText,
-    soldCount: document.getElementById('soldCount').innerText,
-    description: document.getElementById('product-description').innerText,
-    image: document.querySelector('#carousel-inner img').src
-  };
-
-  // Guardamos la información del producto en el localStorage
-  localStorage.setItem('productoComprado', JSON.stringify(productInfo));
-
-  // Redirigimos a la pantalla de carrito
-  window.location.href = 'cart.html';
-});
-
 // categories.js
 document.addEventListener('DOMContentLoaded', () => {
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
-  updateCartCount(cart); // Actualizar el contador de artículos
+  const itemCountEl = document.getElementById('item-count');
+  const totalCount = cart.reduce((sum, product) => sum + product.quantity, 0); // Sumar cantidades
+  itemCountEl.textContent = totalCount; // Actualizar el contador en el DOM
 });

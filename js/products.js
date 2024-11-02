@@ -120,5 +120,9 @@ themeToggleBtn.addEventListener('click', function(){
 // categories.js
 document.addEventListener('DOMContentLoaded', () => {
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
-    updateCartCount(cart); // Actualizar el contador de artículos
+    const itemCountEl = document.getElementById('item-count');
+    const totalCount = cart.reduce((sum, product) => sum + product.quantity, 0); // Sumar cantidades
+    itemCountEl.textContent = totalCount; // Actualizar el contador en el DOM
 });
+
+
