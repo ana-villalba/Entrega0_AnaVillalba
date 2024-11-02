@@ -258,3 +258,8 @@ comprarButton.addEventListener('click', () => {
   window.location.href = 'cart.html';
 });
 
+// categories.js
+document.addEventListener('DOMContentLoaded', () => {
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  updateCartCount(cart); // Actualizar el contador de artículos
+});
