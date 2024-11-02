@@ -117,3 +117,8 @@ themeToggleBtn.addEventListener('click', function(){
     localStorage.setItem('theme', theme)
     
 });
+// categories.js
+document.addEventListener('DOMContentLoaded', () => {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    updateCartCount(cart); // Actualizar el contador de artículos
+});

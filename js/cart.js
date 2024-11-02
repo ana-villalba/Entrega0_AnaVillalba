@@ -1,3 +1,6 @@
+// Inicializar el carrito al cargar la página
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
 // Función para mostrar los productos en el carrito al cargar la página
 document.addEventListener('DOMContentLoaded', () => {
     const cartContent = document.getElementById('cart-content');
@@ -14,7 +17,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const currency = product.currency;
         const productImage = product.image || ''; 
         
-
 
         // Mostrar la información en el HTML del carrito
         cartContent.innerHTML = `
@@ -36,15 +38,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 // Función para eliminar el producto del carrito
-function removeFromCart() {
+function removeFromCart(productId) {
+    
   // Elimina el producto de localStorage
   localStorage.removeItem('productoComprado');
-  
   document.getElementById('cart-content').innerHTML = "<p>El carrito está vacío.</p>";
   document.getElementById('subtotal').textContent = "$0";
   document.getElementById('item-count').textContent = "0";
   document.querySelector('.comprar').style.display = 'none';
-  
   // Muestra una alerta de confirmación
   alert("Producto eliminado del carrito");   }
 
@@ -60,10 +61,10 @@ function changeQuantity(amount) {
     quantityInput.value = quantity;
 
     updateSubtotal(); // Actualizar el subtotal
+    updateCartCount(); // Actualizar el contador del carrito
     updateDecreaseButtonState(); // Actualizar el estado del botón de decrecimiento
+   
 }
-
-
 
 // Función para actualizar el subtotal
 function updateSubtotal() {
@@ -83,6 +84,17 @@ function updateSubtotal() {
     
 
 }
+// Función para actualizar el contador
+function updateCartCount() {
+    const quantityInput = document.getElementById('quantity');
+    const itemCountEl = document.getElementById('item-count');
+    
+    // Obtener la cantidad actual del input
+    const totalCount = parseInt(quantityInput.value) || 0;
+    
+    // Actualizar el contador en el DOM
+    itemCountEl.textContent = totalCount; 
+}
 
 // Función para actualizar el estado del botón de decrecimiento
 function updateDecreaseButtonState() {
@@ -100,20 +112,22 @@ function comprar() {
     window.location.reload();
 }
 
-let cartCount = 0;
+//Botón modo día/modo noche
 
-function addToCart() {
-    cartCount++;
+const themeToggleBtn = document.getElementById('theme-toggle');
+const currentTheme=localStorage.getItem('theme');
 
-    document.getElementById('cart-count').innerText = cartCount;
+if (currentTheme ==='dark'){
+  document.body.classList.add('dark-mode');
+  themeToggleBtn.classList.add('dark');
 }
 
-
-
-function updateCartCount(){
-    let = cart
-    JSON.parse(localStorage.getItem("cart")) || [];
-    let totalCount = cart.reduce((count, product) => count + product.quantity, 0);
+themeToggleBtn.addEventListener('click', function(){
+  document.body.classList.toggle('dark-mode');
+    themeToggleBtn.classList.toggle('dark');
+    let theme = document.body.classList.contains('dark-mode') ? 'dark' : 'light';
+    localStorage.setItem('theme', theme)
     
-    document.getElementById("cart-count").innerText = totalCount;
-}
+});
+
+
