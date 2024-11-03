@@ -224,14 +224,22 @@ a.custom-card:hover {
 
 .listproducts{
 padding: 35px; 
-color: rgb(248, 249, 250);
+color: black;
 margin-left: 15px;
 }
+body.dark-mode .listproducts{
+  padding: 35px; 
+  color: white;
+  margin-left: 15px;
+  }
 .carscat{ 
+  color: black;
+  margin-left: 70px;
+  }
+body.dark-mode .carscat{ 
   color: rgb(248, 249, 250);
   margin-left: 70px;
   }
-
 
 #listcars{
   padding: 20px;
