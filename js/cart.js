@@ -95,7 +95,9 @@ function comprar() {
     localStorage.removeItem('cart');
     window.location.reload();
 }
-
+function seguirComprando() {
+    window.location.href = "categories.html";
+}
 //Botón modo día/modo noche
 
 const themeToggleBtn = document.getElementById('theme-toggle');
