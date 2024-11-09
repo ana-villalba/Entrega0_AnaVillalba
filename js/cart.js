@@ -16,6 +16,7 @@ function removeFromCart(productId) {
 function displayCart() {
     const cartContent = document.getElementById('cart-content');
     const itemCountEl = document.getElementById('item-count');
+    const seguirComprando = document.getElementById('seguir-comprando');
     cartContent.innerHTML = ''; // Limpiar contenido
     updateCartCount()
     if (cart.length > 0) {
@@ -34,10 +35,12 @@ function displayCart() {
             `;
         });
         updateSubtotal(); // Actualizar el subtotal
+        seguirComprando.style.display = 'inline-flex';  // Mostrar el enlace si el carrito no está vacío
     } else {
         cartContent.innerHTML = "<p>El carrito está vacío.</p>";
         document.querySelector('.comprar').style.display = 'none';
         itemCountEl.textContent = '0'; // Actualizar el conteo de items
+        seguirComprando.style.display = 'none';  // Ocultar el enlace "Seguir comprando" si el carrito está vacío
     }
 }
   
