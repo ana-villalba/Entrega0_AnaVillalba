@@ -3,7 +3,7 @@ let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
 // Función para mostrar los productos en el carrito al cargar la página
 document.addEventListener('DOMContentLoaded', () => {
-displayCart();
+    displayCart();
 });
 function removeFromCart(productId) {
     // Filtrar el carrito para eliminar el producto
@@ -24,7 +24,7 @@ function displayCart() {
             // Mostrar la información en el HTML del carrito
             cartContent.innerHTML += `
                 <div class="cart-item">
-                    <img src="${product.images [0]}" alt="${product.name}" class="cart-product-image">
+                    <img src="${product.images[0]}" alt="${product.name}" class="cart-product-image">
                     <h9>${product.name}</h9>
                     <p><strong class="product-price" id="productprice">${product.cost}</strong> ${product.currency}</p>
                     <button id="btn-decrease" onclick="changeQuantity(${product.id}, -1)">-</button>
@@ -52,6 +52,9 @@ function displayTipoDeEnvio() {
     if (cart.length > 0) {
         cart.forEach(product => {
             // Mostrar la información en el HTML del carrito
+            if (!document.getElementById('shippingForm')) {
+                cartContent.innerHTML = ''; // Limpiar contenido antes de insertar el formulario
+        
             cartContent.innerHTML += `
                 <div>
                 <strong>Datos de envio</strong>
@@ -64,10 +67,10 @@ function displayTipoDeEnvio() {
             <div class="form-group">
                <div class="form-container">
             <div class="form-group" style="display: flex;">
-                <label for="shippingType" style="min-width:200px;">Tipo de Envío</label>
-                <select id="shippingType" name="shippingType">
+                <label for="select" style="min-width:200px;">Tipo de Envío</label>
+                <select id="select" name="select">
                     <!-- Opción predeterminada no seleccionable -->
-                    <option value="" disabled selected>Selecciona el tipo de envío que prefieras</option>
+                    <option value="" disabled selected>Selecciona el tipo de envío</option>
                     <option value="premium">Premium 2 a 5 días (15%)</option>
                     <option value="express">Express 5 a 8 días (7%)</option>
                     <option value="standard">Standard 12 a 15 días (5%)</option>
@@ -93,12 +96,55 @@ function displayTipoDeEnvio() {
                 <input type="text" id="user" name="Esquina"  placeholder="Esquina" autocomplete="on" required>
             </div>
         </div>
-                
+
+        <strong>Medios de pago</strong>
+      <br>
+                <br>
+              <div class="form-group">
+               <div class="form-container">
+            <div class="form-group" style="display: flex;">
+                <label for="select" style="min-width:200px;">Elige la forma de pago</label>
+                <select id="select" name="select">
+                    <!-- Opción predeterminada no seleccionable -->
+                    <option value="" disabled selected>Selecciona el método de pago</option>
+                    <option value="premium">Débito</option>
+                    <option value="express">Crédito</option>
+                    <option value="standard">Transferencia</option>
+                </select>
+            </div>  
                     
                 </div>
                 </div>
+                </div>
+
             `;
-        });
+            
+        }});
+
+// Función para calcular costos
+function calcularCostos() {
+    // Obtener el subtotal y el porcentaje de envío seleccionado
+    const subtotal = parseFloat(document.getElementById('subtotal').innerText);
+    const porcentajeEnvio = parseFloat(document.getElementById('shippingType').value);
+
+    // Verificar que se haya seleccionado un tipo de envío
+    if (isNaN(porcentajeEnvio)) {
+        document.getElementById('costoEnvio').innerText = '0';
+        document.getElementById('total').innerText = subtotal.toFixed(2);
+        return;
+    }
+
+    // Calcular el costo de envío y el total
+    const costoEnvio = subtotal * porcentajeEnvio;
+    const total = subtotal + costoEnvio;
+
+    // Actualizar los valores en la página
+    document.getElementById('costoEnvio').innerText = costoEnvio.toFixed(2);
+    document.getElementById('total').innerText = total.toFixed(2);
+}
+
+
+
         updateSubtotal(); // Actualizar el subtotal
         seguirComprando.style.display = 'inline-flex';  // Mostrar el enlace si el carrito no está vacío
     } else {
@@ -109,25 +155,25 @@ function displayTipoDeEnvio() {
     }
 }
 
-  
-    function changeQuantity(productId, amount) {
-        const quantityInput = document.getElementById(`quantity-${productId}`);
-        let quantity = parseInt(quantityInput.value) + amount;
-    
-        // Asegurarse de que la cantidad no sea menor a 1
-        if (quantity < 1) {
-            quantity = 1;
-        }
-        quantityInput.value = quantity;
-    
-        // Actualizar el carrito y localStorage
-        const productIndex = cart.findIndex(product => product.id === productId);
-        cart[productIndex].quantity = quantity;
-        localStorage.setItem("cart", JSON.stringify(cart));
-    
-        updateSubtotal(); // Actualizar el subtotal
-        updateCartCount(); // Actualizar el contador del carrito
+
+function changeQuantity(productId, amount) {
+    const quantityInput = document.getElementById(`quantity-${productId}`);
+    let quantity = parseInt(quantityInput.value) + amount;
+
+    // Asegurarse de que la cantidad no sea menor a 1
+    if (quantity < 1) {
+        quantity = 1;
     }
+    quantityInput.value = quantity;
+
+    // Actualizar el carrito y localStorage
+    const productIndex = cart.findIndex(product => product.id === productId);
+    cart[productIndex].quantity = quantity;
+    localStorage.setItem("cart", JSON.stringify(cart));
+
+    updateSubtotal(); // Actualizar el subtotal
+    updateCartCount(); // Actualizar el contador del carrito
+}
 
 // Función para actualizar el subtotal
 function updateSubtotal() {
@@ -154,7 +200,7 @@ function updateDecreaseButtonState() {
     const quantityInput = document.getElementById('quantity');
     const btnDecrease = document.getElementById('btn-decrease');
     const quantity = parseInt(quantityInput.value);
-    
+
     btnDecrease.disabled = quantity <= 1; // Deshabilitar el botón si la cantidad es 1
 }
 
@@ -164,9 +210,9 @@ function comprar() {
     localStorage.removeItem('cart');
     window.location.reload();
 }
-function elegirEnvio(){
+function elegirEnvio() {
     displayTipoDeEnvio()
-    
+
 }
 function seguirComprando() {
     window.location.href = "categories.html";
@@ -174,19 +220,19 @@ function seguirComprando() {
 //Botón modo día/modo noche
 
 const themeToggleBtn = document.getElementById('theme-toggle');
-const currentTheme=localStorage.getItem('theme');
+const currentTheme = localStorage.getItem('theme');
 
-if (currentTheme ==='dark'){
-  document.body.classList.add('dark-mode');
-  themeToggleBtn.classList.add('dark');
+if (currentTheme === 'dark') {
+    document.body.classList.add('dark-mode');
+    themeToggleBtn.classList.add('dark');
 }
 
-themeToggleBtn.addEventListener('click', function(){
-  document.body.classList.toggle('dark-mode');
+themeToggleBtn.addEventListener('click', function () {
+    document.body.classList.toggle('dark-mode');
     themeToggleBtn.classList.toggle('dark');
     let theme = document.body.classList.contains('dark-mode') ? 'dark' : 'light';
     localStorage.setItem('theme', theme)
-    
+
 });
 // categories.js
 document.addEventListener('DOMContentLoaded', () => {
