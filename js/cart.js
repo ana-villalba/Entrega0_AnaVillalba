@@ -43,6 +43,72 @@ function displayCart() {
         seguirComprando.style.display = 'none';  // Ocultar el enlace "Seguir comprando" si el carrito está vacío
     }
 }
+function displayTipoDeEnvio() {
+    const cartContent = document.getElementById('cart-content');
+    const itemCountEl = document.getElementById('item-count');
+    const seguirComprando = document.getElementById('seguir-comprando');
+    cartContent.innerHTML = ''; // Limpiar contenido
+    updateCartCount()
+    if (cart.length > 0) {
+        cart.forEach(product => {
+            // Mostrar la información en el HTML del carrito
+            cartContent.innerHTML += `
+                <div>
+                <strong>Datos de envio</strong>
+                <br>
+                <br>
+
+                <div style="display:flex;">
+         <div class="form-container" >
+        <form id="shippingForm">
+            <div class="form-group">
+               <div class="form-container">
+            <div class="form-group" style="display: flex;">
+                <label for="shippingType" style="min-width:200px;">Tipo de Envío</label>
+                <select id="shippingType" name="shippingType">
+                    <!-- Opción predeterminada no seleccionable -->
+                    <option value="" disabled selected>Selecciona el tipo de envío que prefieras</option>
+                    <option value="premium">Premium 2 a 5 días (15%)</option>
+                    <option value="express">Express 5 a 8 días (7%)</option>
+                    <option value="standard">Standard 12 a 15 días (5%)</option>
+                </select>
+            </div>
+            <br>
+        <div style="display:flex;">
+            <span style="min-width:200px;">Dirección de envío:</span>
+            <div class="input-cars mb-3">
+                <input type="text" id="user" name="direccion"  placeholder="Departamento" autocomplete="on" required>
+            </div>
+        </div>
+            <div class="input-cars mb-3" style="padding-left: 200px;">
+                <input type="text" id="user" name="localidad"  placeholder="Localidad" autocomplete="on" required>
+            </div>
+            <div class="input-cars mb-3" style="padding-left: 200px;">
+                <input type="text" id="user" name="Calle"  placeholder="Calle" autocomplete="on" required>
+            </div>
+            <div class="input-cars mb-3" style="padding-left: 200px;">
+                <input type="text" id="user" name="Número"  placeholder="Número" autocomplete="on" required>
+            </div>
+            <div class="input-cars mb-3" style="padding-left: 200px;">
+                <input type="text" id="user" name="Esquina"  placeholder="Esquina" autocomplete="on" required>
+            </div>
+        </div>
+                
+                    
+                </div>
+                </div>
+            `;
+        });
+        updateSubtotal(); // Actualizar el subtotal
+        seguirComprando.style.display = 'inline-flex';  // Mostrar el enlace si el carrito no está vacío
+    } else {
+        cartContent.innerHTML = "<p>El carrito está vacío.</p>";
+        document.querySelector('.comprar').style.display = 'none';
+        itemCountEl.textContent = '0'; // Actualizar el conteo de items
+        seguirComprando.style.display = 'none';  // Ocultar el enlace "Seguir comprando" si el carrito está vacío
+    }
+}
+
   
     function changeQuantity(productId, amount) {
         const quantityInput = document.getElementById(`quantity-${productId}`);
@@ -97,6 +163,10 @@ function comprar() {
     alert("Compra realizada!");
     localStorage.removeItem('cart');
     window.location.reload();
+}
+function elegirEnvio(){
+    displayTipoDeEnvio()
+    
 }
 function seguirComprando() {
     window.location.href = "categories.html";
