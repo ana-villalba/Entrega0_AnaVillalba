@@ -910,3 +910,14 @@ color: rgb(248, 249, 250);
   align-items: center;
   justify-content: center;
 }
+
+
+#select{
+  border: 2px solid rgb(254, 153,0);
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-size: 16px;
+  color: #202020;
+  align-items: center;
+  justify-content: center;
+}
