@@ -68,7 +68,7 @@ function displayTipoDeEnvio() {
                <div class="form-container">
             <div class="form-group" style="display: flex;">
                 <label for="select" style="min-width:200px;">Tipo de Envío</label>
-                <select id="select" name="select">
+                <select id="selectTipoDeEnvio" name="select">
                     <!-- Opción predeterminada no seleccionable -->
                     <option value="" disabled selected>Selecciona el tipo de envío</option>
                     <option value="premium">Premium 2 a 5 días (15%)</option>
@@ -104,7 +104,7 @@ function displayTipoDeEnvio() {
                <div class="form-container">
             <div class="form-group" style="display: flex;">
                 <label for="select" style="min-width:200px;">Elige la forma de pago</label>
-                <select id="select" name="select">
+                <select id="selectMetodoPago" name="select">
                     <!-- Opción predeterminada no seleccionable -->
                     <option value="" disabled selected>Selecciona el método de pago</option>
                     <option value="premium">Débito</option>
@@ -217,6 +217,38 @@ function elegirEnvio() {
 function seguirComprando() {
     window.location.href = "categories.html";
 }
+
+function finalizarCompra() {
+    // Validar dirección
+    const direccion = document.querySelector('input[name="direccion"]').value;
+    const localidad = document.querySelector('input[name="localidad"]').value;
+    const calle = document.querySelector('input[name="Calle"]').value;
+    const numero = document.querySelector('input[name="Número"]').value;
+    const esquina = document.querySelector('input[name="Esquina"]').value;
+
+    if (!direccion || !localidad || !calle || !numero || !esquina) {
+        alert("Por favor, complete todos los campos de la dirección.");
+        return;
+    }
+
+    // Validar forma de envío
+    const envioSeleccionado = document.getElementById('selectTipoDeEnvio').value;
+    if (!envioSeleccionado) {
+        alert("Por favor, seleccione una forma de envío.");
+        return;
+    }
+
+    // Validar forma de pago
+    const formaPagoSeleccionada = document.getElementById('selectMetodoPago').value;
+    if (!formaPagoSeleccionada) {
+        alert("Por favor, seleccione una forma de pago.");
+        return;
+    }
+
+    // Si todas las validaciones se cumplen, llamamos a la función comprar()
+    comprar();
+}
+
 //Botón modo día/modo noche
 
 const themeToggleBtn = document.getElementById('theme-toggle');
