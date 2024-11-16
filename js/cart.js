@@ -38,7 +38,7 @@ function displayCart() {
                 </div>
             `;
         });
-        updateSubtotal(); // Actualizar el subtotal
+        
     } else {
         cartContent.innerHTML = "<p>El carrito está vacío.</p>";
         document.querySelector('.comprar').style.display = 'none';
