@@ -5,7 +5,6 @@ let cart = JSON.parse(localStorage.getItem("cart")) || [];
 document.addEventListener('DOMContentLoaded', () => {
     displayCart();
 
-
     // Actualizar el subtotal y el total al cargar la página
     const subtotal = calculateSubtotal();
     updateSubtotal(subtotal); // Llamada para calcular y mostrar el subtotal al cargar la página
@@ -15,7 +14,6 @@ function removeFromCart(productId) {
     // Filtrar el carrito para eliminar el producto
     cart = cart.filter(product => product.id !== productId);
     localStorage.setItem("cart", JSON.stringify(cart)); // Actualizar localStorage
-    updateSubtotal();
 
     // Actualizar la visualización del carrito
     displayCart();
@@ -40,12 +38,9 @@ function displayCart() {
                 </div>
             `;
         });
-
-        updateSubtotal(); // Actualizar el subtotal
     } else {
         cartContent.innerHTML = "<p>El carrito está vacío.</p>";
         document.querySelector('.comprar').style.display = 'none';
-        document.querySelector('.button-cart').style.display = 'none';
         itemCountEl.textContent = '0'; // Actualizar el conteo de items
     }
 
@@ -313,20 +308,10 @@ function updateDecreaseButtonState() {
 
 // Función para manejar la compra
 function comprar() {
-    var toastElement = document.getElementById('toast');
-        var toast = new bootstrap.Toast(toastElement);
-        toast.show(); // Mostrar el toast
-
-
+    alert("Compra realizada!");
     localStorage.removeItem('cart');
-       // Esperar antes de recargar
-       setTimeout(() => {
-        window.location.reload();
-    }, 3500); 
-
+    window.location.reload();
 }
-    
-
 function elegirEnvio() {
     displayTipoDeEnvio();
 // Registrar evento change después de cargar el formulario
@@ -368,7 +353,6 @@ function finalizarCompra() {
         return;
     }
 
-    
     // Si todas las validaciones se cumplen, llamamos a la función comprar()
     comprar();
 }
@@ -399,4 +383,3 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-0
