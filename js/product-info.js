@@ -106,16 +106,25 @@ function getProductData(url) {
 // Seleccionamos el botón "Comprar" por su id
 const comprarButton = document.getElementById('comprar');
 
-// Función para guardar la información del producto y redirigir a la pantalla de carrito
 comprarButton.addEventListener('click', () => {
-
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
-  const newProduct = { ...data, quantity: 1}
-  cart.push(newProduct)
-  // Guardamos la información del producto en el localStorage
+
+  // Verificar si el producto ya está en el carrito
+  const existingProductIndex = cart.findIndex(product => product.id === data.id);
+
+  if (existingProductIndex !== -1) {
+      // Si el producto ya existe, incrementa la cantidad
+      cart[existingProductIndex].quantity += 1;
+  } else {
+      // Si el producto no existe, añádelo como nuevo con cantidad 1
+      const newProduct = { ...data, quantity: 1 };
+      cart.push(newProduct);
+  }
+
+  // Guardar el carrito actualizado en localStorage
   localStorage.setItem('cart', JSON.stringify(cart));
 
-  // Redirigimos a la pantalla de carrito
+  // Redirigir al carrito
   window.location.href = 'cart.html';
 });
 
