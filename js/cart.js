@@ -17,6 +17,8 @@ function removeFromCart(productId) {
 
     // Actualizar la visualización del carrito
     displayCart();
+    updateSubtotal(); // Asegurarte de actualizar el subtotal después de eliminar
+    updateCartCount(); // Actualizar el contador del carrito
 }
 function displayCart() {
     const cartContent = document.getElementById('cart-content');
@@ -38,7 +40,6 @@ function displayCart() {
                 </div>
             `;
         });
-        updateSubtotal(); // Actualizar el subtotal
     } else {
         cartContent.innerHTML = "<p>El carrito está vacío.</p>";
         document.querySelector('.comprar').style.display = 'none';
@@ -94,20 +95,20 @@ function displayTipoDeEnvio() {
         <div style="display:flex;">
             <span style="min-width:200px;">Dirección de envío:</span>
             <div class="input-cars mb-3">
-                <input type="text" id="direccion" name="direccion"  placeholder="Departamento" autocomplete="on" required>
+                <input type="text" id="user" name="direccion"  placeholder="Departamento" autocomplete="on" required>
             </div>
         </div>
             <div class="input-cars mb-3" style="padding-left: 200px;">
-                <input type="text" id="localidad" name="localidad"  placeholder="Localidad" autocomplete="on" required>
+                <input type="text" id="user" name="localidad"  placeholder="Localidad" autocomplete="on" required>
             </div>
             <div class="input-cars mb-3" style="padding-left: 200px;">
-                <input type="text" id="calle" name="Calle"  placeholder="Calle" autocomplete="on" required>
+                <input type="text" id="user" name="Calle"  placeholder="Calle" autocomplete="on" required>
             </div>
             <div class="input-cars mb-3" style="padding-left: 200px;">
-                <input type="text" id="numero" name="Número"  placeholder="Número" autocomplete="on" required>
+                <input type="text" id="user" name="Número"  placeholder="Número" autocomplete="on" required>
             </div>
             <div class="input-cars mb-3" style="padding-left: 200px;">
-                <input type="text" id="equina" name="Esquina"  placeholder="Esquina" autocomplete="on" required>
+                <input type="text" id="user" name="Esquina"  placeholder="Esquina" autocomplete="on" required>
             </div>
         </div>
         
@@ -259,9 +260,18 @@ function changeQuantity(productId, amount) {
 }
 
 // Función para actualizar el subtotal
-function updateSubtotal(subtotal) {
+function updateSubtotal() {
+    let subtotal = 0;
+    cart.forEach(product => {
+        subtotal += product.cost * product.quantity; // Calcular el subtotal
+    });
+
+    // Actualizar en el DOM el subtotal
     const subtotalElement = document.getElementById('total-carrito');
-    subtotalElement.innerHTML = subtotal.toFixed(2);  // Mostrar el subtotal
+    subtotalElement.innerHTML = subtotal.toFixed(2); // Mostrar el subtotal
+
+    // Calcular el costo de envío y el total
+    updateTotal(subtotal); // Llamar a updateTotal() con el subtotal actualizado
 }
 
 // Función para calcular el total con el costo de envío
@@ -313,17 +323,9 @@ function updateDecreaseButtonState() {
 
 // Función para manejar la compra
 function comprar() {
-    var toastElement = document.getElementById('toast');
-        var toast = new bootstrap.Toast(toastElement);
-        toast.show(); // Mostrar el toast
-
-
+    alert("Compra realizada!");
     localStorage.removeItem('cart');
-       // Esperar antes de recargar
-       setTimeout(() => {
-        window.location.reload();
-    }, 3500); 
-
+    window.location.reload();
 }
 function elegirEnvio() {
     displayTipoDeEnvio();
@@ -431,4 +433,3 @@ function mostrarCamposPago() {
         `;
     }
 }
-
