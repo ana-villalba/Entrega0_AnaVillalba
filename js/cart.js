@@ -15,6 +15,7 @@ function removeFromCart(productId) {
     // Filtrar el carrito para eliminar el producto
     cart = cart.filter(product => product.id !== productId);
     localStorage.setItem("cart", JSON.stringify(cart)); // Actualizar localStorage
+    updateSubtotal();
 
     // Actualizar la visualización del carrito
     displayCart();
@@ -39,9 +40,12 @@ function displayCart() {
                 </div>
             `;
         });
+
+        updateSubtotal(); // Actualizar el subtotal
     } else {
         cartContent.innerHTML = "<p>El carrito está vacío.</p>";
         document.querySelector('.comprar').style.display = 'none';
+        document.querySelector('.button-cart').style.display = 'none';
         itemCountEl.textContent = '0'; // Actualizar el conteo de items
     }
 
@@ -309,10 +313,20 @@ function updateDecreaseButtonState() {
 
 // Función para manejar la compra
 function comprar() {
-    alert("Compra realizada!");
+    var toastElement = document.getElementById('toast');
+        var toast = new bootstrap.Toast(toastElement);
+        toast.show(); // Mostrar el toast
+
+
     localStorage.removeItem('cart');
-    window.location.reload();
+       // Esperar antes de recargar
+       setTimeout(() => {
+        window.location.reload();
+    }, 3500); 
+
 }
+    
+
 function elegirEnvio() {
     displayTipoDeEnvio();
 // Registrar evento change después de cargar el formulario
@@ -354,6 +368,7 @@ function finalizarCompra() {
         return;
     }
 
+    
     // Si todas las validaciones se cumplen, llamamos a la función comprar()
     comprar();
 }
