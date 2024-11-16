@@ -377,6 +377,24 @@ function finalizarCompra() {
         return;
     }
 
+ // Validar campos dinámicos de forma de pago
+ if (formaPagoSeleccionada === 'debito' || formaPagoSeleccionada === 'credito') {
+    const nombreTitular = document.getElementById('nombreTitular')?.value;
+    const numeroTarjeta = document.getElementById('numeroTarjeta')?.value;
+    const fechaExpiracion = document.getElementById('fechaExpiracion')?.value;
+    const codigoSeguridad = document.getElementById('codigoSeguridad')?.value;
+
+    if (!nombreTitular || !numeroTarjeta || !fechaExpiracion || !codigoSeguridad) {
+        alert("Por favor, complete todos los campos de tarjeta.");
+        return;
+    }
+} else if (formaPagoSeleccionada === 'transferencia') {
+    const banco = document.getElementById('banco')?.value;
+    const numeroCuenta = document.getElementById('numeroCuenta')?.value;
+    if (!banco || !numeroCuenta) {
+        return;
+    }
+}
     // Si todas las validaciones se cumplen, llamamos a la función comprar()
     comprar();
 }
@@ -416,29 +434,22 @@ function mostrarCamposPago() {
     if (metodoPago === 'debito' || metodoPago === 'credito') {
         camposPago.innerHTML = `
             <label for="nombreTitular">Nombre del titular:</label>
-            <input type="text" id="nombreTitular" placeholder="Nombre completo" style="padding: 8px; margin-bottom: 10px; width: 100%;" required>
-
+            <input type="text" id="nombreTitular" placeholder="Nombre completo" required>
             <label for="numeroTarjeta">Número de tarjeta:</label>
-            <input type="text" id="numeroTarjeta" placeholder="1234 5678 9012 3456" maxlength="19" style="padding: 8px; margin-bottom: 10px; width: 100%;" required>
-
-            <div style="display: flex; gap: 10px;">
-                <div>
-                    <label for="fechaExpiracion">Fecha de expiración:</label>
-                    <input type="text" id="fechaExpiracion" placeholder="MM/AA" maxlength="5" style="padding: 8px; width: 100%;" required>
-                </div>
-                <div>
-                    <label for="codigoSeguridad">CVV:</label>
-                    <input type="text" id="codigoSeguridad" placeholder="123" maxlength="3" style="padding: 8px; width: 100%;" required>
-                </div>
-            </div>
+            <input type="text" id="numeroTarjeta" placeholder="1234 5678 9012 3456" maxlength="19" required>
+            <label for="fechaExpiracion">Fecha de expiración:</label>
+            <input type="text" id="fechaExpiracion" placeholder="MM/AA" maxlength="5" required>
+            <label for="codigoSeguridad">CVV:</label>
+            <input type="text" id="codigoSeguridad" placeholder="123" maxlength="3" required>
         `;
     } else if (metodoPago === 'transferencia') {
         camposPago.innerHTML = `
             <label for="banco">Banco:</label>
-            <input type="text" id="banco" placeholder="Nombre del banco" style="padding: 8px; margin-bottom: 10px; width: 100%;" required>
-
+            <input type="text" id="banco" placeholder="Nombre del banco" required>
             <label for="numeroCuenta">Número de cuenta:</label>
-            <input type="text" id="numeroCuenta" placeholder="123456789" style="padding: 8px; margin-bottom: 10px; width: 100%;" required>
+            <input type="text" id="numeroCuenta" placeholder="123456789" required>
         `;
+    } else {
+        console.error("No se seleccionó un método de pago válido.");
     }
 }
