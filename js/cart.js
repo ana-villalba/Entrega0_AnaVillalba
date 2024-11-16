@@ -93,20 +93,20 @@ function displayTipoDeEnvio() {
         <div style="display:flex;">
             <span style="min-width:200px;">Dirección de envío:</span>
             <div class="input-cars mb-3">
-                <input type="text" id="user" name="direccion"  placeholder="Departamento" autocomplete="on" required>
+                <input type="text" id="direccion" name="direccion"  placeholder="Departamento" autocomplete="on" required>
             </div>
         </div>
             <div class="input-cars mb-3" style="padding-left: 200px;">
-                <input type="text" id="user" name="localidad"  placeholder="Localidad" autocomplete="on" required>
+                <input type="text" id="localidad" name="localidad"  placeholder="Localidad" autocomplete="on" required>
             </div>
             <div class="input-cars mb-3" style="padding-left: 200px;">
-                <input type="text" id="user" name="Calle"  placeholder="Calle" autocomplete="on" required>
+                <input type="text" id="calle" name="Calle"  placeholder="Calle" autocomplete="on" required>
             </div>
             <div class="input-cars mb-3" style="padding-left: 200px;">
-                <input type="text" id="user" name="Número"  placeholder="Número" autocomplete="on" required>
+                <input type="text" id="numero" name="Número"  placeholder="Número" autocomplete="on" required>
             </div>
             <div class="input-cars mb-3" style="padding-left: 200px;">
-                <input type="text" id="user" name="Esquina"  placeholder="Esquina" autocomplete="on" required>
+                <input type="text" id="equina" name="Esquina"  placeholder="Esquina" autocomplete="on" required>
             </div>
         </div>
         
