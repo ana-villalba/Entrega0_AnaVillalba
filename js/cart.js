@@ -4,6 +4,12 @@ let cart = JSON.parse(localStorage.getItem("cart")) || [];
 // Función para mostrar los productos en el carrito al cargar la página
 document.addEventListener('DOMContentLoaded', () => {
     displayCart();
+
+
+    // Actualizar el subtotal y el total al cargar la página
+    const subtotal = calculateSubtotal();
+    updateSubtotal(subtotal); // Llamada para calcular y mostrar el subtotal al cargar la página
+    updateTotal(subtotal); // Calcular y mostrar el total
 });
 function removeFromCart(productId) {
     // Filtrar el carrito para eliminar el producto
@@ -34,16 +40,27 @@ function displayCart() {
                 </div>
             `;
         });
-        updateSubtotal(); // Actualizar el subtotal
-        
 
+        updateSubtotal(); // Actualizar el subtotal
     } else {
         cartContent.innerHTML = "<p>El carrito está vacío.</p>";
         document.querySelector('.comprar').style.display = 'none';
         document.querySelector('.button-cart').style.display = 'none';
         itemCountEl.textContent = '0'; // Actualizar el conteo de items
     }
+
+    
 }
+
+// Función para calcular el subtotal
+function calculateSubtotal() {
+    let subtotal = 0;
+    cart.forEach(product => {
+        subtotal += product.cost * product.quantity; // Calcular el subtotal
+    });
+    return subtotal;
+}
+
 function displayTipoDeEnvio() {
     const cartContent = document.getElementById('cart-content');
     const itemCountEl = document.getElementById('item-count');
@@ -130,9 +147,17 @@ function displayTipoDeEnvio() {
             continuarBtn.style.display = 'none';
         }
 
+        document.addEventListener('DOMContentLoaded', () => {
+            const tipoEnvioSelect = document.getElementById('selectTipoDeEnvio');
+            if (tipoEnvioSelect) {
+                console.log("El elemento 'selectTipoDeEnvio' existe.");
+            } else {
+                console.error("El elemento 'selectTipoDeEnvio' no existe en el DOM.");
+            }
+        });
 
 // Función para calcular costos
-function calcularCostos() {
+function calcularCostosConPorcentaje() {
     // Obtener el subtotal y el porcentaje de envío seleccionado
     const subtotal = parseFloat(document.getElementById('subtotal').innerText);
     const porcentajeEnvio = parseFloat(document.getElementById('shippingType').value);
@@ -148,6 +173,64 @@ function calcularCostos() {
     const costoEnvio = subtotal * porcentajeEnvio;
     const total = subtotal + costoEnvio;
 
+    // Actualizar en el DOM
+    document.getElementById('costoEnvio').innerText = costoEnvio.toFixed(2);
+    document.getElementById('total').innerText = total.toFixed(2);
+  }
+// Función para actualizar el subtotal, costo de envío y total
+function updateSubtotal() {
+    const subtotalElement = document.getElementById('total-carrito');
+    let subtotal = 0;
+
+    cart.forEach(product => {
+        subtotal += product.cost * product.quantity; // Calcular el total
+    });
+
+    // Mostrar el subtotal
+    subtotalElement.innerHTML = subtotal.toFixed(2);
+
+    
+    // Calcular el costo de envío
+    calcularCostos(subtotal);
+
+// Función para calcular costos (envío + total)
+function calcularCostos(subtotal) {
+    const tipoEnvioSelect = document.getElementById('selectTipoDeEnvio');
+     console.log(tipoEnvioSelect); // ¿Aparece como null o como un objeto?
+    const costoEnvioElement = document.getElementById('costoEnvio');
+    const totalElement = document.getElementById('total');
+
+    const envioSeleccionado = tipoEnvioSelect.value;
+
+    let costoEnvio = 0;
+    let porcentajeEnvio = 0;
+
+    // Definir el porcentaje de envío basado en el tipo seleccionado
+    if (envioSeleccionado === 'premium') {
+        porcentajeEnvio = 0.15; // 15% para Premium
+    } else if (envioSeleccionado === 'express') {
+        porcentajeEnvio = 0.07; // 7% para Express
+    } else if (envioSeleccionado === 'standard') {
+        porcentajeEnvio = 0.05; // 5% para Standard
+    }
+
+    // Calcular el costo de envío
+    costoEnvio = subtotal * porcentajeEnvio;
+
+    // Calcular el total (subtotal + costo de envío)
+    const total = subtotal + costoEnvio;
+
+    // Mostrar el costo de envío y el total
+    costoEnvioElement.innerText = costoEnvio.toFixed(2);
+    totalElement.innerText = total.toFixed(2);
+}
+
+// Función para manejar el cambio de tipo de envío
+document.getElementById('selectTipoDeEnvio').addEventListener('change', () => {
+    // Obtener el subtotal actualizado y calcular el total
+    updateSubtotal();
+});
+
     // Actualizar los valores en la página
     document.getElementById('costoEnvio').innerText = costoEnvio.toFixed(2);
     document.getElementById('total').innerText = total.toFixed(2);
@@ -159,7 +242,6 @@ function calcularCostos() {
         itemCountEl.textContent = '0'; // Actualizar el conteo de items
     }
 }
-
 
 function changeQuantity(productId, amount) {
     const quantityInput = document.getElementById(`quantity-${productId}`);
@@ -181,15 +263,40 @@ function changeQuantity(productId, amount) {
 }
 
 // Función para actualizar el subtotal
-function updateSubtotal() {
+function updateSubtotal(subtotal) {
     const subtotalElement = document.getElementById('total-carrito');
-    let total = 0;
+    subtotalElement.innerHTML = subtotal.toFixed(2);  // Mostrar el subtotal
+}
 
-    cart.forEach(product => {
-        total += product.cost * product.quantity; // Calcular el total
-    });
+// Función para calcular el total con el costo de envío
+function updateTotal(subtotal) {
+    const tipoEnvioSelect = document.getElementById('selectTipoDeEnvio');
+    const costoEnvioElement = document.getElementById('costoEnvio');
+    const totalElement = document.getElementById('total');
 
-    subtotalElement.innerHTML = total.toFixed(2); // Mostrar el subtotal
+    let costoEnvio = 0;
+    let porcentajeEnvio = 0;
+
+    if (tipoEnvioSelect && tipoEnvioSelect.value) {
+        const envioSeleccionado = tipoEnvioSelect.value;
+        
+        // Calcular porcentaje de envío
+        if (envioSeleccionado === 'premium') {
+            porcentajeEnvio = 0.15; // 15% para Premium
+        } else if (envioSeleccionado === 'express') {
+            porcentajeEnvio = 0.07; // 7% para Express
+        } else if (envioSeleccionado === 'standard') {
+            porcentajeEnvio = 0.05; // 5% para Standard
+        }
+
+        // Calcular costo de envío
+        costoEnvio = subtotal * porcentajeEnvio;
+    }
+
+    // Mostrar el costo de envío y total
+    const total = subtotal + costoEnvio;
+    costoEnvioElement.innerText = costoEnvio.toFixed(2);
+    totalElement.innerText = total.toFixed(2);
 }
 
 // Función para actualizar el contador
@@ -198,7 +305,6 @@ function updateCartCount() {
     const totalCount = cart.reduce((sum, product) => sum + product.quantity, 0); // Sumar cantidades
     itemCountEl.textContent = totalCount; // Actualizar el contador en el DOM
 }
-
 
 // Función para actualizar el estado del botón de decrecimiento
 function updateDecreaseButtonState() {
@@ -226,8 +332,17 @@ function comprar() {
     
 
 function elegirEnvio() {
-    displayTipoDeEnvio()
-
+    displayTipoDeEnvio();
+// Registrar evento change después de cargar el formulario
+const tipoEnvioSelect = document.getElementById('selectTipoDeEnvio');
+if (tipoEnvioSelect) {
+    tipoEnvioSelect.addEventListener('change', () => {
+        console.log("Tipo de envío cambiado:", tipoEnvioSelect.value); // Verificar valor seleccionado
+        updateSubtotal(); // Actualiza el subtotal con el tipo de envío
+    });
+} else {
+    console.error("El selectTipoDeEnvio no se encuentra en el DOM.");
+}
 }
 
 function finalizarCompra() {
@@ -288,6 +403,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
+
 function mostrarCamposPago() {
     const metodoPago = document.getElementById('selectMetodoPago').value;
     const camposPago = document.getElementById('camposPago');
@@ -322,3 +438,4 @@ function mostrarCamposPago() {
         `;
     }
 }
+
