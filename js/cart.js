@@ -44,6 +44,7 @@ function displayCart() {
     } else {
         cartContent.innerHTML = "<p>El carrito está vacío.</p>";
         document.querySelector('.comprar').style.display = 'none';
+        document.querySelector('.button-cart').style.display = 'none';
         itemCountEl.textContent = '0'; // Actualizar el conteo de items
     }
 
@@ -324,9 +325,16 @@ function updateDecreaseButtonState() {
 
 // Función para manejar la compra
 function comprar() {
-    alert("Compra realizada!");
+    var toastElement = document.getElementById('toast');
+        var toast = new bootstrap.Toast(toastElement);
+        toast.show(); // Mostrar el toast
+
     localStorage.removeItem('cart');
-    window.location.reload();
+       // Esperar antes de recargar
+       setTimeout(() => {
+        window.location.reload();
+    }, 3500); 
+
 }
 function elegirEnvio() {
     displayTipoDeEnvio();
