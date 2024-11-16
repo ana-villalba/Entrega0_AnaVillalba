@@ -97,25 +97,29 @@ function displayTipoDeEnvio() {
                 <input type="text" id="user" name="Esquina"  placeholder="Esquina" autocomplete="on" required>
             </div>
         </div>
-
+        
         <strong>Medios de pago</strong>
-      <br>
-                <br>
+              <br><br>
               <div class="form-group">
                <div class="form-container">
-            <div class="form-group" style="display: flex;">
-                <label for="select" style="min-width:200px;">Elige la forma de pago</label>
-                <select id="selectMetodoPago" name="select">
-                    <!-- Opción predeterminada no seleccionable -->
-                    <option value="" disabled selected>Selecciona el método de pago</option>
-                    <option value="premium">Débito</option>
-                    <option value="express">Crédito</option>
-                    <option value="standard">Transferencia</option>
-                </select>
-            </div>  
-                    
+          <div class="form-group" style="display: flex; flex-direction: column;">
+              <label for="selectMetodoPago" style="margin-bottom: 10px;">Elige la forma de pago:</label>
+              <select id="selectMetodoPago" name="select" onchange="mostrarCamposPago()" style="padding: 8px; border-radius: 5px;">
+                <option value="" disabled selected>Selecciona el método de pago</option>
+                <option value="debito">Débito</option>
+                <option value="credito">Crédito</option>
+                <option value="transferencia">Transferencia bancaria</option>
+            </select>
+        </div>
+
+              <!-- Contenedor para los datos de pago -->
+              <div id="camposPago" style="margin-top: 20px;"></div>
+              </div>
                 </div>
-                </div>
+
+
+
+   
                 </div>
 
             `;
@@ -282,3 +286,39 @@ document.addEventListener('DOMContentLoaded', () => {
     const totalCount = cart.reduce((sum, product) => sum + product.quantity, 0); // Sumar cantidades
     itemCountEl.textContent = totalCount; // Actualizar el contador en el DOM
 });
+
+
+function mostrarCamposPago() {
+    const metodoPago = document.getElementById('selectMetodoPago').value;
+    const camposPago = document.getElementById('camposPago');
+    camposPago.innerHTML = ''; // Limpiar campos previos
+
+    if (metodoPago === 'debito' || metodoPago === 'credito') {
+        camposPago.innerHTML = `
+            <label for="nombreTitular">Nombre del titular:</label>
+            <input type="text" id="nombreTitular" placeholder="Nombre completo" style="padding: 8px; margin-bottom: 10px; width: 100%;" required>
+
+            <label for="numeroTarjeta">Número de tarjeta:</label>
+            <input type="text" id="numeroTarjeta" placeholder="1234 5678 9012 3456" maxlength="19" style="padding: 8px; margin-bottom: 10px; width: 100%;" required>
+
+            <div style="display: flex; gap: 10px;">
+                <div>
+                    <label for="fechaExpiracion">Fecha de expiración:</label>
+                    <input type="text" id="fechaExpiracion" placeholder="MM/AA" maxlength="5" style="padding: 8px; width: 100%;" required>
+                </div>
+                <div>
+                    <label for="codigoSeguridad">CVV:</label>
+                    <input type="text" id="codigoSeguridad" placeholder="123" maxlength="3" style="padding: 8px; width: 100%;" required>
+                </div>
+            </div>
+        `;
+    } else if (metodoPago === 'transferencia') {
+        camposPago.innerHTML = `
+            <label for="banco">Banco:</label>
+            <input type="text" id="banco" placeholder="Nombre del banco" style="padding: 8px; margin-bottom: 10px; width: 100%;" required>
+
+            <label for="numeroCuenta">Número de cuenta:</label>
+            <input type="text" id="numeroCuenta" placeholder="123456789" style="padding: 8px; margin-bottom: 10px; width: 100%;" required>
+        `;
+    }
+}
