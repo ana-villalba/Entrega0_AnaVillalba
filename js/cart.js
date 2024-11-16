@@ -391,7 +391,9 @@ function finalizarCompra() {
 } else if (formaPagoSeleccionada === 'transferencia') {
     const banco = document.getElementById('banco')?.value;
     const numeroCuenta = document.getElementById('numeroCuenta')?.value;
+
     if (!banco || !numeroCuenta) {
+        alert("Por favor, complete todos los campos de transferencia.");
         return;
     }
 }
