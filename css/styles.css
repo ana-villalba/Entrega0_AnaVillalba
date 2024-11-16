@@ -903,3 +903,18 @@ color: rgb(248, 249, 250);
   width: 100%; 
   max-width: 400px;
 }
+
+.toast {
+  background-color: #d7d8da;
+  border: 1px solid #e2dcdc;
+  border-radius: 6px;
+}
+
+.toast-header img {
+  object-fit: contain;
+}
+
+.toast-body {
+  font-size: 14px;
+  color: #333;
+}
