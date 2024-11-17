@@ -44,6 +44,7 @@ function displayCart() {
     } else {
         cartContent.innerHTML = "<p>El carrito está vacío.</p>";
         document.querySelector('.comprar').style.display = 'none';
+        document.querySelector('.button-cart').style.display = 'none';
         itemCountEl.textContent = '0'; // Actualizar el conteo de items
     }
 
@@ -175,64 +176,6 @@ function calcularCostosConPorcentaje() {
     document.getElementById('costoEnvio').innerText = costoEnvio.toFixed(2);
     document.getElementById('total').innerText = total.toFixed(2);
   }
-// Función para actualizar el subtotal, costo de envío y total
-function updateSubtotal() {
-    const subtotalElement = document.getElementById('total-carrito');
-    let subtotal = 0;
-
-    cart.forEach(product => {
-        subtotal += product.cost * product.quantity; // Calcular el total
-    });
-
-    // Mostrar el subtotal
-    subtotalElement.innerHTML = subtotal.toFixed(2);
-
-    
-    // Calcular el costo de envío
-    calcularCostos(subtotal);
-
-// Función para calcular costos (envío + total)
-function calcularCostos(subtotal) {
-    const tipoEnvioSelect = document.getElementById('selectTipoDeEnvio');
-     console.log(tipoEnvioSelect); // ¿Aparece como null o como un objeto?
-    const costoEnvioElement = document.getElementById('costoEnvio');
-    const totalElement = document.getElementById('total');
-
-    const envioSeleccionado = tipoEnvioSelect.value;
-
-    let costoEnvio = 0;
-    let porcentajeEnvio = 0;
-
-    // Definir el porcentaje de envío basado en el tipo seleccionado
-    if (envioSeleccionado === 'premium') {
-        porcentajeEnvio = 0.15; // 15% para Premium
-    } else if (envioSeleccionado === 'express') {
-        porcentajeEnvio = 0.07; // 7% para Express
-    } else if (envioSeleccionado === 'standard') {
-        porcentajeEnvio = 0.05; // 5% para Standard
-    }
-
-    // Calcular el costo de envío
-    costoEnvio = subtotal * porcentajeEnvio;
-
-    // Calcular el total (subtotal + costo de envío)
-    const total = subtotal + costoEnvio;
-
-    // Mostrar el costo de envío y el total
-    costoEnvioElement.innerText = costoEnvio.toFixed(2);
-    totalElement.innerText = total.toFixed(2);
-}
-
-// Función para manejar el cambio de tipo de envío
-document.getElementById('selectTipoDeEnvio').addEventListener('change', () => {
-    // Obtener el subtotal actualizado y calcular el total
-    updateSubtotal();
-});
-
-    // Actualizar los valores en la página
-    document.getElementById('costoEnvio').innerText = costoEnvio.toFixed(2);
-    document.getElementById('total').innerText = total.toFixed(2);
-}
         updateSubtotal(); // Actualizar el subtotal
     } else {
         cartContent.innerHTML = "<p>El carrito está vacío.</p>";
@@ -324,9 +267,14 @@ function updateDecreaseButtonState() {
 
 // Función para manejar la compra
 function comprar() {
-    alert("Compra realizada!");
+    var toastElement = document.getElementById('toast');
+        var toast = new bootstrap.Toast(toastElement);
+        toast.show(); // Mostrar el toast
     localStorage.removeItem('cart');
-    window.location.reload();
+    // Esperar antes de recargar
+    setTimeout(() => {
+        window.location.reload();
+    }, 3500); 
 }
 function elegirEnvio() {
     displayTipoDeEnvio();
@@ -369,6 +317,24 @@ function finalizarCompra() {
         return;
     }
 
+    // Validar campos dinámicos de forma de pago
+ if (formaPagoSeleccionada === 'debito' || formaPagoSeleccionada === 'credito') {
+    const nombreTitular = document.getElementById('nombreTitular')?.value;
+    const numeroTarjeta = document.getElementById('numeroTarjeta')?.value;
+    const fechaExpiracion = document.getElementById('fechaExpiracion')?.value;
+    const codigoSeguridad = document.getElementById('codigoSeguridad')?.value;
+    if (!nombreTitular || !numeroTarjeta || !fechaExpiracion || !codigoSeguridad) {
+        alert("Por favor, complete todos los campos de tarjeta.");
+        return;
+    }
+} else if (formaPagoSeleccionada === 'transferencia') {
+    const banco = document.getElementById('banco')?.value;
+    const numeroCuenta = document.getElementById('numeroCuenta')?.value;
+    if (!banco || !numeroCuenta) {
+        alert("Por favor, complete todos los campos de transferencia.");
+        return;
+    }
+}
     // Si todas las validaciones se cumplen, llamamos a la función comprar()
     comprar();
 }
@@ -408,29 +374,26 @@ function mostrarCamposPago() {
     if (metodoPago === 'debito' || metodoPago === 'credito') {
         camposPago.innerHTML = `
             <label for="nombreTitular">Nombre del titular:</label>
-            <input type="text" id="nombreTitular" placeholder="Nombre completo" style="padding: 8px; margin-bottom: 10px; width: 100%;" required>
+              <input type="text" id="nombreTitular" placeholder="Nombre completo" required>
 
             <label for="numeroTarjeta">Número de tarjeta:</label>
-            <input type="text" id="numeroTarjeta" placeholder="1234 5678 9012 3456" maxlength="19" style="padding: 8px; margin-bottom: 10px; width: 100%;" required>
+            <input type="text" id="numeroTarjeta" placeholder="1234 5678 9012 3456" maxlength="19" required>
+            <label for="fechaExpiracion">Fecha de expiración:</label>
+            <input type="text" id="fechaExpiracion" placeholder="MM/AA" maxlength="5" required>
+            <label for="codigoSeguridad">CVV:</label>
+            <input type="text" id="codigoSeguridad" placeholder="123" maxlength="3" required>
 
-            <div style="display: flex; gap: 10px;">
-                <div>
-                    <label for="fechaExpiracion">Fecha de expiración:</label>
-                    <input type="text" id="fechaExpiracion" placeholder="MM/AA" maxlength="5" style="padding: 8px; width: 100%;" required>
-                </div>
-                <div>
-                    <label for="codigoSeguridad">CVV:</label>
-                    <input type="text" id="codigoSeguridad" placeholder="123" maxlength="3" style="padding: 8px; width: 100%;" required>
-                </div>
-            </div>
         `;
     } else if (metodoPago === 'transferencia') {
         camposPago.innerHTML = `
             <label for="banco">Banco:</label>
-            <input type="text" id="banco" placeholder="Nombre del banco" style="padding: 8px; margin-bottom: 10px; width: 100%;" required>
+            <input type="text" id="banco" placeholder="Nombre del banco" required>
+
 
             <label for="numeroCuenta">Número de cuenta:</label>
-            <input type="text" id="numeroCuenta" placeholder="123456789" style="padding: 8px; margin-bottom: 10px; width: 100%;" required>
+             <input type="text" id="numeroCuenta" placeholder="123456789" required>
         `;
-    }
+    } else {
+        console.error("No se seleccionó un método de pago válido.");
+}
 }
