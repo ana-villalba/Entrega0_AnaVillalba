@@ -270,6 +270,7 @@ function comprar() {
     var toastElement = document.getElementById('toast');
         var toast = new bootstrap.Toast(toastElement);
         toast.show(); // Mostrar el toast
+
     localStorage.removeItem('cart');
     // Esperar antes de recargar
     setTimeout(() => {
@@ -317,12 +318,14 @@ function finalizarCompra() {
         return;
     }
 
+
     // Validar campos dinámicos de forma de pago
  if (formaPagoSeleccionada === 'debito' || formaPagoSeleccionada === 'credito') {
     const nombreTitular = document.getElementById('nombreTitular')?.value;
     const numeroTarjeta = document.getElementById('numeroTarjeta')?.value;
     const fechaExpiracion = document.getElementById('fechaExpiracion')?.value;
     const codigoSeguridad = document.getElementById('codigoSeguridad')?.value;
+
     if (!nombreTitular || !numeroTarjeta || !fechaExpiracion || !codigoSeguridad) {
         alert("Por favor, complete todos los campos de tarjeta.");
         return;
@@ -374,26 +377,24 @@ function mostrarCamposPago() {
     if (metodoPago === 'debito' || metodoPago === 'credito') {
         camposPago.innerHTML = `
             <label for="nombreTitular">Nombre del titular:</label>
-              <input type="text" id="nombreTitular" placeholder="Nombre completo" required>
-
+            <input type="text" id="nombreTitular" placeholder="Nombre completo" required>
             <label for="numeroTarjeta">Número de tarjeta:</label>
             <input type="text" id="numeroTarjeta" placeholder="1234 5678 9012 3456" maxlength="19" required>
             <label for="fechaExpiracion">Fecha de expiración:</label>
             <input type="text" id="fechaExpiracion" placeholder="MM/AA" maxlength="5" required>
             <label for="codigoSeguridad">CVV:</label>
             <input type="text" id="codigoSeguridad" placeholder="123" maxlength="3" required>
-
         `;
     } else if (metodoPago === 'transferencia') {
         camposPago.innerHTML = `
             <label for="banco">Banco:</label>
             <input type="text" id="banco" placeholder="Nombre del banco" required>
 
-
             <label for="numeroCuenta">Número de cuenta:</label>
-             <input type="text" id="numeroCuenta" placeholder="123456789" required>
+            <input type="text" id="numeroCuenta" placeholder="123456789" required>
         `;
     } else {
         console.error("No se seleccionó un método de pago válido.");
 }
 }
+
