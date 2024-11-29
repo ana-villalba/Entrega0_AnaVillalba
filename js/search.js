@@ -28,6 +28,9 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     // Obtener productos de la API
+    // 1. Cambiar por localhost:3000
+    // 2. agregar header: { Authorization: Bearer ${token} }
+    // 3. Eliminar una de las dos funcions duplicadas, esta pro eljemplo
     fetch(`https://japceibal.github.io/emercado-api/cats_products/${catID}.json`)
         .then(response => response.json())
         .then(data => {

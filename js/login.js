@@ -16,12 +16,25 @@ function login() {
                 alert("Por favor, ingrese un email válido.");
                 return;
             }
-        
-            // Guardar el estado de usuario logueado y el email 
-            sessionStorage.setItem("sesion", true);
-            localStorage.setItem("username", usuario);
-        
-            // Redireccionar al perfil o a otra página que desees
-            window.location.href = "index.html";
+
+            // Llamo al endpoint de /login para obtener el token
+            fetch("http://localhost:3000/auth/login", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ username: usuario, password: contraseña })
+            })
+            .then(data => data.json())
+            .then(result => {
+                // Guardar el token que devuelve el endpoint
+                sessionStorage.setItem("sesion", true);
+                localStorage.setItem("username", result.username);
+                localStorage.setItem("token", result.token);
+                
+                // Redireccionar al perfil o a otra página que desees
+                window.location.href = "index.html";
+            })
+
         }
         

@@ -136,6 +136,7 @@ comprarButton.addEventListener('click', () => {
 document.addEventListener("DOMContentLoaded", function() {
   let productId = localStorage.getItem("selectedProductId");
   if (productId) {
+        // 1. Cambiar por localhost:3000 o usar getJSONData
     const url = `https://japceibal.github.io/emercado-api/products/${productId}.json`;
     getProductData(url); 
   } else {

@@ -1,8 +1,8 @@
 const CATEGORIES_URL = "http://localhost:3000/categories";
 const PUBLISH_PRODUCT_URL = "http://localhost:3000/sell/publish";
-const PRODUCTS_URL = "https://japceibal.github.io/emercado-api/cats_products/";
-const PRODUCT_INFO_URL = "https://japceibal.github.io/emercado-api/products/";
-const PRODUCT_INFO_COMMENTS_URL = "https://japceibal.github.io/emercado-api/products_comments/";
+const PRODUCTS_URL = "http://localhost:3000/cats_products";
+const PRODUCT_INFO_URL = "http://localhost:3000/products";
+const PRODUCT_INFO_COMMENTS_URL = "http://localhost:3000/products_comments";
 const CART_INFO_URL = "http://localhost:3000/user_cart/25801";
 const CART_BUY_URL = "http://localhost:3000/cart/buy";
 const EXT_TYPE = ".json";
@@ -16,9 +16,14 @@ let hideSpinner = function(){
 }
 
 let getJSONData = function(url){
+    const token = localStorage.getItem("token")
     let result = {};
     showSpinner();
-    return fetch(url)
+    return fetch(url, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
     .then(response => {
       if (response.ok) {
         return response.json();
