@@ -1,26 +1,39 @@
-let comments =[];  
 document.addEventListener("DOMContentLoaded", function() {
   let producto = localStorage.getItem("selectedProductId");
+  const token = localStorage.getItem("token");
 
   if (producto) {
-    const url = PRODUCT_INFO_COMMENTS_URL+ producto + '.json'
-    fetch(url)
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok ' + response.statusText);
-        }
-        return response.json();
-      })
-      .then(data => {
-        console.log(data);
-        ShowComments(data);
-        commentsData = data; // Guardar los comentarios en la variable global
-      })
-      .catch(error => console.error('Error al obtener los comentarios:', error));
+    // Cambia esta URL por la de hoost300 o la que estés utilizando
+    const url = `http://localhost:3000/products_comments/${producto}`; // Asegúrate de que esta URL sea correcta
+
+    fetch(url, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok: ' + response.statusText);
+      }
+      return response.json();
+    })
+    .then(data => {
+      console.log(data);
+      // Asegúrate de que data tenga la estructura correcta para ShowComments
+      ShowComments(data); // Llama a la función para mostrar los comentarios
+      commentsData = data; // Guardar los comentarios en la variable global
+    })
+    .catch(error => {
+      console.error('Error al obtener los comentarios:', error);
+      alert('Hubo un problema al cargar los comentarios. Intenta de nuevo más tarde.'); // Mensaje de error al usuario
+    });
   } else {
     alert("No se ha seleccionado ningún producto.");
   }
 });
+
+
+let comments =[];  
 // Función para mostrar comentarios
 function ShowComments(comments) {
   const CommentsList = document.getElementById('ProductsComments');
@@ -58,6 +71,7 @@ function loadCarouselImages(images) {
     carouselItem.classList.add('carousel-item');
     if (index === 0) {
       carouselItem.classList.add('active'); // Marcar la primera imagen como activa
+
     }
 
     const imgElement = document.createElement('img');

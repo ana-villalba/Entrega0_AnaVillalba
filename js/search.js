@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", function() {
     // Obtener los productos desde el localStorage
     const catID = localStorage.getItem("catID");
     const productsContainer = document.getElementById("products-container");
-
+ 
     // Función para mostrar los productos en la página
     function displayProducts(products) {
         productsContainer.innerHTML = ""; // Limpiar el contenedor
@@ -28,14 +28,18 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     // Obtener productos de la API
-    // 1. Cambiar por localhost:3000
-    // 2. agregar header: { Authorization: Bearer ${token} }
-    // 3. Eliminar una de las dos funcions duplicadas, esta pro eljemplo
-    fetch(`https://japceibal.github.io/emercado-api/cats_products/${catID}.json`)
+    fetch(`http://localhost:3000/cats_products/${catID}.json`, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      })
         .then(response => response.json())
         .then(data => {
             let products = data.products;
 
+
+
+            
             // Mostrar todos los productos inicialmente
             displayProducts(products);
 

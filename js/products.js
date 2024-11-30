@@ -1,6 +1,6 @@
 
 let productsArray = [];
-
+ 
 function showProductsList(array) {
     let htmlContentToAppend = "";
 
