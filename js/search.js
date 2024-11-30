@@ -28,7 +28,8 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     // Obtener productos de la API
-    fetch(`http://localhost:3000/cats_products/${catID}.json`, {
+    const token = localStorage.getItem("token")
+    fetch(`http://localhost:3000/cats_products/${catID}`, {
         headers: {
           Authorization: `Bearer ${token}`
         }
