@@ -30,7 +30,7 @@ function displayCart() {
             // Mostrar la información en el HTML del carrito
             cartContent.innerHTML += `
                 <div class="cart-item">
-                    <img src="${product.images[0]}" alt="${product.name}" class="cart-product-image">
+                    <img src="${product.images[0]}" alt="${product.name}" class="img-fluid cart-product-img">
                     <h9>${product.name}</h9>
                     <p><strong class="product-price" id="productprice">${product.cost}</strong> ${product.currency}</p>
                     <button id="btn-decrease" onclick="changeQuantity(${product.id}, -1)">-</button>

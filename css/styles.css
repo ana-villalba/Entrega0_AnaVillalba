@@ -692,11 +692,25 @@ body.dark-mode #container {
   background-color: rgb(35, 34, 34);
   margin-top: 20px;
 }
+.dark-mode.related-products-section :hover {
+  background-color: #46494b;
+}
 
+h6 {
+  font-size: 40px;
+  margin-top: 50px;
+  text-align:center;
+  }
 
-.list-group.dark-mode {
-  background-color: rgb(248, 249, 250);
-  color: rgb(31, 30, 30);
+/* Estilos en modo oscuro */
+
+body.dark-mode .list-group-item {
+  background-color:rgb(35, 34, 34);
+  color: white; 
+}
+
+body.dark-mode .list-group-item:hover {
+  background-color: #46494b; 
 }
 
 .dark-mode #product-name{
@@ -713,7 +727,7 @@ body.dark-mode #container {
 .cart {
   max-width: 800px;
   flex-grow: 1;
-  margin: 0 auto;
+  margin: 20px auto;
   padding: 20px;
   background-color: #FFFFFF;
   border: 1px solid #ddd;
@@ -729,6 +743,7 @@ body.dark-mode #container {
   margin-bottom: 40px;
 }
 .cart-item {
+  flex-direction: column;
   align-items: flex-start; 
   margin-bottom: 20px; 
 }
@@ -758,14 +773,8 @@ h9 {
 
 h2 {
   margin-top: 20px;
-  text-align: left;
-}
+  text-align:left;}
 
-.productoComprado {
-    width: 10%; 
-    height: auto;
-    float: left;
-}
 .btn-remove {
   background: none; /* Sin fondo */
   border: none;
@@ -940,3 +949,26 @@ input:focus, select:focus {
   box-shadow: 0 0 5px #525353;
 }
 
+/* Media Queries para Responsividad */
+@media (max-width: 768px) {
+  .cart {
+    padding: 15px; /* Menor padding en pantallas pequeñas */
+  }
+
+  .cart-title {
+    font-size: 20px; /* Tamaño de fuente más pequeño */
+    margin-bottom: 30px; /* Menor margen */
+  }
+
+  .product-price {
+    font-size: 16px; /* Ajustar tamaño de fuente */
+  }
+
+  input[type="number"] {
+    width: 50px; /* Ajustar el ancho del input */
+  }
+
+  h2 {
+    font-size: 18px; /* Ajustar tamaño de fuente */
+  }
+}
